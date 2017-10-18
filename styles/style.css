@@ -20,14 +20,6 @@
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
       }
 
-     .container {
-       background-color: #ccc;
-       width: 300px;
-       height: 300px;
-       text-align: center;
-       margin-bottom: 10px;
-      }
-
       #on-the-place {
         background-color: #fff;
         font-family: Roboto;
