@@ -2,7 +2,9 @@
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -33.8688, lng: 151.2195},
           zoom: 13,
-          mapTypeId: 'roadmap'
+          mapTypeId: 'roadmap',
+          mapTypeControl: false,
+          streetViewControl : false
         });
 
         // Create the search box and link it to the UI element.
@@ -32,7 +34,7 @@
           markers = [];
 
           // For each place, get the icon, name and location.
-          var bounds = new google.maps.LatLngBounds();
+          var bounds = new google.maps.LatLngBounds();  //鎖定範圍搜尋
           places.forEach(function(place) {
             if (!place.geometry) {
               console.log("Returned place contains no geometry");
@@ -51,7 +53,7 @@
               map: map,
               icon: icon,
               title: place.name,
-              position: place.geometry.location
+              position: place.geometry.location  // 得到位置
             }));
 
             if (place.geometry.viewport) {
