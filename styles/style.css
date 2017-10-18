@@ -20,6 +20,14 @@
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
       }
 
+     .container {
+       background-color: #ccc;
+       width: 300px;
+       height: 300px;
+       text-align: center;
+       margin-bottom: 10px;
+      }
+
       #on-the-place {
         background-color: #fff;
         font-family: Roboto;
@@ -40,7 +48,7 @@
         font-family: Roboto;
         font-size: 15px;
         font-weight: 300;
-        margin-left: 24px;
+        margin-left: 12px;
         padding: 0 11px 0 13px;
         text-overflow: ellipsis; // 過長字母
         width: 300px;
