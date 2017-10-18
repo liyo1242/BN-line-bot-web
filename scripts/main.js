@@ -1,2 +1,7 @@
-var myHeading = document.querySelector('h1');
-myHeading.innerHTML = 'Hello World!';
+ var map;
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 8
+    });
+}
