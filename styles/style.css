@@ -9,6 +9,11 @@ html {
   height: 100%;
 }
 
+#main {
+  max-width: 600px;
+  margin: 0 auto; 
+}
+
 /* Optional: Makes the sample page fill the window. */
 html, body {
    height: 100%;
