@@ -12,8 +12,8 @@
         var input2 = document.getElementById('get-off-location');
         var searchBox = new google.maps.places.SearchBox(input);
         var searchBox2 = new google.maps.places.SearchBox(input2);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input2);
+        //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input2);
 
         // Bias the SearchBox results towards current map's viewport.
         map.addListener('bounds_changed', function() {
@@ -66,10 +66,11 @@
             } else {
               bounds.extend(place.geometry.location);
             }
-            
+
           });
           map.fitBounds(bounds);
         });
+
          searchBox2.addListener('places_changed', function() {
           var places = searchBox2.getPlaces();
 
