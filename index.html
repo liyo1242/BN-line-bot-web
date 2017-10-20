@@ -35,15 +35,20 @@
             <form method="get" action="">
               <input type="time" name="inputTime" id="inputTime" value=""/>
               <input id="on-the-place" type="search" placeholder="上車地點"/>
-              <input id="get-off-location"  type="search" placeholder="下車地點"/>              
+              <input id="get-off-location"  type="search" placeholder="下車地點"/>
+              
+              <div data-role="controlgroup" data-type="horizontal">
+                <input type= "submit" name="subButton" id = "button1"  value = "送出" data-inline="true">
+                <input type= "reset" name="clearButton" id = "button2"  value = "上一步" data-inline="true">             
+              
+              </div>
             </form>
           </div>       
           <div id="map">     
           </div>             
       </div>
     <div data-role = "footer">
-      <input type= "submit" name="subButton" id = "button1"  value = "送出">
-      <input type= "reset" name="clearButton" id = "button2"  value = "上一步"> 
+
     </div>
     </div>
 
