@@ -12,7 +12,13 @@
        #map {
         height: 400px;
         width: 100%;
-       }      
+       } 
+       .content-inner {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        height: auto;        
+       }     
     </style>
   </head>
 
@@ -21,15 +27,18 @@
       <div data-role = "header">
         <h1>叫車</h1>
       </div>
-      <div data-role = "content">
-        <input type="time" name="inputTime" id="inputTime" value="" placeholder="搭車時間"/>
-        <input id="on-the-place" type="search" placeholder="上車地點"/>
-        <input id="get-off-location"  type="search" placeholder="下車地點"/>
-        <div id="map"></div>
+      <div data-role = "content">        
+        <div id="map">
+          <div class="content-inner">
+            <input type="time" name="inputTime" id="inputTime" value=""/>
+            <input id="on-the-place" type="search" placeholder="上車地點"/>
+            <input id="get-off-location"  type="search" placeholder="下車地點"/>
+          </div>
+        </div>
       </div>
       <div data-role="footer">
-       <inpt type "submit" name="subButton" id = "button1" data-inline = "ture" value = "送出">
-       <inpt type "reset" name="clearButton" id = "button2" data-inline = "ture" value = "上一步"> 
+       <inpt type= "submit" name="subButton" id = "button1" data-inline = "ture" value = "送出">
+       <inpt type= "reset" name="clearButton" id = "button2" data-inline = "ture" value = "上一步"> 
       </div>
     </div>    
 
