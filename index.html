@@ -16,12 +16,20 @@
        } 
        .content-inner {
         z-index: 99;
-        width: 100%;
+        width: 90%;
         margin-left: auto;
         margin-right: inherit;
         height: auto; 
         position: absolute;       
-       }     
+       }  
+       .content-inner-below {
+        z-index: 99;
+        width: 90%;
+        margin-left: auto;
+        margin-right: inherit;
+        height: auto; 
+        position: absolute;       
+       }   
     </style>
   </head>
 
@@ -40,10 +48,12 @@
           </div>       
           <div id="map">     
           </div>
+          <div class="content-inner-below">
+             <inpt type= "submit" name="subButton" id = "button1"  value = "送出">
+             <inpt type= "reset" name="clearButton" id = "button2"  value = "上一步"> 
+          </div>
       </div>
-      <div data-role="footer">
-       <inpt type= "submit" name="subButton" id = "button1" data-inline = "ture" value = "送出">
-       <inpt type= "reset" name="clearButton" id = "button2" data-inline = "ture" value = "上一步"> 
+      <div data-role="footer">      
       </div>
     </div>    
 
