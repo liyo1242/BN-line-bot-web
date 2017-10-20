@@ -3,6 +3,7 @@
           center: {lat: -33.8688, lng: 151.2195},
           zoom: 13,
           mapTypeId: 'roadmap',
+          gestureHandling: 'cooperative',
           mapTypeControl: false,
           streetViewControl : false
         });
