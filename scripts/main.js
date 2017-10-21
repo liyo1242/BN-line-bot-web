@@ -13,9 +13,23 @@
         map.addListener("dragend", function(){
 
         var center = map.getCenter();
+
+        geocoder.geocode({
+          'latLng': center
+        }, function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                if (results) {
+                    // 將取得的資訊傳入 marker 訊息泡泡
+                    //showAddress(results[0], marker);
+                    window.alert("current map center point is x: " + results[0]);
+                }
+            } else {
+                alert("Reverse Geocoding failed because: " + status);
+            }
+        });
   
   		//var getCenter = layer1.getDefaultViewport().getCenter(); 
-  		window.alert("current map center point is x: " + center );	
+  			
   
   		//console.log("current map center point is x: " + getCenter.getLatitude() + ", y: " + getCenter.getLongitude());
   		//console.log("current map center is x: " + newPoint.x + ", y: " + newPoint.y);
