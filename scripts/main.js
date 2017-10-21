@@ -28,7 +28,8 @@
         window.alert('Geocoder failed due to: ' + center.lat().toString() + center.lng().toString() );
         var latlng = {lat: center.lat().toString(), lng: center.lng().toString()};
         window.alert('Geocoder failed due to: ' + latlng);
-
+        var latlngtext = {lat: parseFloat(21.4556554156), lng: parseFloat(57.546551)};
+		window.alert('Geocoder failed due to: ' + latlngtext);
         geocoder.geocode({'location': latlng}, function(results, status) {
           if (status === 'OK') {
             if (results[1]) {
