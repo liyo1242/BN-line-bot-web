@@ -10,32 +10,38 @@
           gestureHandling:'cooperative'
         });
 
+        var geocoder = new google.maps.Geocoder;
+        var infowindow = new google.maps.InfoWindow;
+
         map.addListener("dragend", function(){
-
-        var center = map.getCenter();
-
-        geocoder.geocode({
-          'location': center
-        }, function(results, status) {
-            if (status === 'OK') {
-                if (results) {
-                    // 將取得的資訊傳入 marker 訊息泡泡
-                    //showAddress(results[0], marker);
-                    window.alert("current map center point is x: " + results[0]);
-                }
-            } else {
-                alert("Reverse Geocoding failed because: " + status);
-            }
-        });
-  
-  		//var getCenter = layer1.getDefaultViewport().getCenter(); 
-  			
-  
-  		//console.log("current map center point is x: " + getCenter.getLatitude() + ", y: " + getCenter.getLongitude());
-  		//console.log("current map center is x: " + newPoint.x + ", y: " + newPoint.y);
+        	var center = map.getCenter();
+        	geocodeLatLng(geocoder, map, infowindow,center);
 		});
 
         new AutocompleteDirectionsHandler(map);
+      }
+
+      function geocodeLatLng(geocoder, map, infowindow,center) {
+        var input = center;
+        var latlngStr = input.split(',', 2);
+        var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+        geocoder.geocode({'location': latlng}, function(results, status) {
+          if (status === 'OK') {
+            if (results[1]) {
+              //map.setZoom(11);
+              var marker = new google.maps.Marker({
+                position: latlng,
+                map: map
+              });
+              infowindow.setContent(results[1].formatted_address);
+              infowindow.open(map, marker);
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
       }
 
        /**
