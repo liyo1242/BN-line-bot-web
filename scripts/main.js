@@ -12,7 +12,7 @@
 
         var geocoder = new google.maps.Geocoder;
         var infowindow = new google.maps.InfoWindow;
-
+        
         map.addListener("dragend", function(){
 
         	var center = map.getCenter();
@@ -42,14 +42,14 @@
        /**
         * @constructor
        */
-      function AutocompleteDirectionsHandler(map) {
+      function AutocompleteDirectionsHandler(map) {  // 路線規劃
         this.map = map;
         this.originPlaceId = null;
         this.destinationPlaceId = null;
         this.travelMode = 'DRIVING';
         var originInput = document.getElementById('on-the-place');
         var destinationInput = document.getElementById('get-off-location');
-        //var modeSelector = document.getElementById('mode-selector');
+
         this.directionsService = new google.maps.DirectionsService;
         this.directionsDisplay = new google.maps.DirectionsRenderer;
         this.directionsDisplay.setMap(map);
@@ -59,28 +59,20 @@
         var destinationAutocomplete = new google.maps.places.Autocomplete(
             destinationInput, {placeIdOnly: true});
 
-        // this.setupClickListener('changemode-walking', 'WALKING');
-        // this.setupClickListener('changemode-transit', 'TRANSIT');
-        // this.setupClickListener('changemode-driving', 'DRIVING');
-
         this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
         this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
-
-        // this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
-        // this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
-        // this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
       }
 
       // Sets a listener on a radio button to change the filter type on Places
       // Autocomplete.
-      AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
-        var radioButton = document.getElementById(id);
-        var me = this;
-        radioButton.addEventListener('click', function() {
-          me.travelMode = mode;
-          me.route();
-        });
-      };
+      // AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
+      //   var radioButton = document.getElementById(id);
+      //   var me = this;
+      //   radioButton.addEventListener('click', function() {
+      //     me.travelMode = mode;
+      //     me.route();
+      //   });
+      // };
 
       AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
         var me = this;
