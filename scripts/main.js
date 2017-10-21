@@ -12,10 +12,10 @@
 
         map.addListener("dragend", function(){
 
-        var center = map.getCenter;
+        var center = map.getCenter();
   
   		//var getCenter = layer1.getDefaultViewport().getCenter(); 
-  		window.alert("current map center point is x: " + center.getLatitude() );	
+  		window.alert("current map center point is x: " + center );	
   
   		//console.log("current map center point is x: " + getCenter.getLatitude() + ", y: " + getCenter.getLongitude());
   		//console.log("current map center is x: " + newPoint.x + ", y: " + newPoint.y);
