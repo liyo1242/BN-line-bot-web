@@ -14,7 +14,9 @@
         var infowindow = new google.maps.InfoWindow;
 
         map.addListener("dragend", function(){
+
         	var center = map.getCenter();
+        	window.alert('dragend ' + center);
         	geocodeLatLng(geocoder, map, infowindow,center);
 		});
 
@@ -23,20 +25,20 @@
 
       function geocodeLatLng(geocoder, map, infowindow,center) {
         var input = center;
-
+        window.alert('Geocoder failed due to: ' + center);
         var latlngStr = input.split(',', 2);
         var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-        window.alert('Geocoder failed due to: ' + latlng);
         geocoder.geocode({'location': latlng}, function(results, status) {
           if (status === 'OK') {
             if (results[1]) {
+            	window.alert('Geocoder failed due to: ' + results[1].formatted_address);
               //map.setZoom(11);
-              var marker = new google.maps.Marker({
-                position: latlng,
-                map: map
-              });
-              infowindow.setContent(results[1].formatted_address);
-              infowindow.open(map, marker);
+              // var marker = new google.maps.Marker({
+              //   position: latlng,
+              //   map: map
+              // });
+              // infowindow.setContent(results[1].formatted_address);
+              // infowindow.open(map, marker);
             } else {
               window.alert('No results found');
             }
