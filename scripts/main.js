@@ -16,7 +16,6 @@
         map.addListener("dragend", function(){
 
         	var center = map.getCenter();
-        	window.alert('dragend ' + center);
         	geocodeLatLng(geocoder, map, infowindow,center);
 		});
 
@@ -30,14 +29,7 @@
         geocoder.geocode({'location': latlng}, function(results, status) {
           if (status === 'OK') {
             if (results[0]) {
-            	window.alert('Geocoder failed due to: ' + results[0].formatted_address);
-              //map.setZoom(11);
-              // var marker = new google.maps.Marker({
-              //   position: latlng,
-              //   map: map
-              // });
-              // infowindow.setContent(results[1].formatted_address);
-              // infowindow.open(map, marker);
+            	window.alert(results[0].formatted_address);  // 這是地址
             } else {
               window.alert('No results found');
             }
