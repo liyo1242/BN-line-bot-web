@@ -10,6 +10,16 @@
           gestureHandling:'cooperative'
         });
 
+        map.on("extent-change", function(){
+  
+  		var point = getCenterPoint();
+  
+  		var newPoint = webMercatorUtils.webMercatorToGeographic(point);
+  
+  		console.log("current map center point is x: " + point.getLatitude() + ", y: " + point.getLongitude());
+  		console.log("current map center is x: " + newPoint.x + ", y: " + newPoint.y);
+		});
+
         new AutocompleteDirectionsHandler(map);
       }
 
@@ -98,13 +108,5 @@
 	{
   		return map.extent.getCenter();
 	}
+
 	
-	map.on("extent-change", function(){
-  
-  	var point = getCenterPoint();
-  
-  	var newPoint = webMercatorUtils.webMercatorToGeographic(point);
-  
-  	console.log("current map center point is x: " + point.getLatitude() + ", y: " + point.getLongitude());
-  	console.log("current map center is x: " + newPoint.x + ", y: " + newPoint.y);
-	});
