@@ -23,8 +23,10 @@
 
       function geocodeLatLng(geocoder, map, infowindow,center) {
         var input = center;
+
         var latlngStr = input.split(',', 2);
         var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+        window.alert('Geocoder failed due to: ' + latlng);
         geocoder.geocode({'location': latlng}, function(results, status) {
           if (status === 'OK') {
             if (results[1]) {
