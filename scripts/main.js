@@ -25,7 +25,7 @@
 
       function geocodeLatLng(geocoder, map, infowindow,center) {
         var input = center;
-        window.alert('Geocoder failed due to: ' + center);
+        window.alert('Geocoder failed due to: ' + center.lat().toString() + center.lng().toString() );
         var latlngStr = input.split(',', 2);
         var latlng = {lat: parseFloat(center.lat().toString()), lng: parseFloat(center.lng().toString())};
         window.alert('Geocoder failed due to: ' + latlng);
