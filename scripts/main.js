@@ -24,15 +24,13 @@
       }
 
       function geocodeLatLng(geocoder, map, infowindow,center) {
-        var input = center;
-        window.alert('Geocoder failed due to: ' + center.lat().toString() + center.lng().toString() );
+        var input = center;      
         var latlng = {lat: center.lat(), lng: center.lng()};
-        window.alert('Geocoder failed due to: ' + latlng);
 
         geocoder.geocode({'location': latlng}, function(results, status) {
           if (status === 'OK') {
             if (results[1]) {
-            	window.alert('Geocoder failed due to: ' + results[1].formatted_address);
+            	window.alert('Geocoder failed due to: ' + results[1]);
               //map.setZoom(11);
               // var marker = new google.maps.Marker({
               //   position: latlng,
