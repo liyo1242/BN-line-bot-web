@@ -27,7 +27,8 @@
         var input = center;
         window.alert('Geocoder failed due to: ' + center);
         var latlngStr = input.split(',', 2);
-        var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+        var latlng = {lat: parseFloat(center.lat().toString()), lng: parseFloat(center.lng().toString())};
+        window.alert('Geocoder failed due to: ' + latlng);
         geocoder.geocode({'location': latlng}, function(results, status) {
           if (status === 'OK') {
             if (results[1]) {
