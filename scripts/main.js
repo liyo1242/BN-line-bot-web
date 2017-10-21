@@ -15,9 +15,9 @@
         var center = map.getCenter();
 
         geocoder.geocode({
-          'latLng': center
+          'location': center
         }, function(results, status) {
-            if (status === google.maps.GeocoderStatus.OK) {
+            if (status === 'OK') {
                 if (results) {
                     // 將取得的資訊傳入 marker 訊息泡泡
                     //showAddress(results[0], marker);
