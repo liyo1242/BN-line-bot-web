@@ -29,8 +29,8 @@
 
         geocoder.geocode({'location': latlng}, function(results, status) {
           if (status === 'OK') {
-            if (results[1]) {
-            	window.alert('Geocoder failed due to: ' + results[1]);
+            if (results[0]) {
+            	window.alert('Geocoder failed due to: ' + results[0].formatted_address);
               //map.setZoom(11);
               // var marker = new google.maps.Marker({
               //   position: latlng,
