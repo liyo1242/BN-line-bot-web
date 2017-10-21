@@ -12,9 +12,10 @@
 
         map.addListener("center_changed", function(){
   
-  		var getCenter = layer1.getDefaultViewport().getCenter(); 	
+  		var getCenter = layer1.getDefaultViewport().getCenter(); 
+  		window.alert("current map center point is x: " + getCenter.getLatitude() + ", y: " + getCenter.getLongitude());	
   
-  		console.log("current map center point is x: " + getCenter.getLatitude() + ", y: " + getCenter.getLongitude());
+  		//console.log("current map center point is x: " + getCenter.getLatitude() + ", y: " + getCenter.getLongitude());
   		//console.log("current map center is x: " + newPoint.x + ", y: " + newPoint.y);
 		});
 
