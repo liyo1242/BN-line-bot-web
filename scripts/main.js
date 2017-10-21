@@ -80,6 +80,11 @@
             featureType: 'landscape.man_made',
             elementType: 'geometry.stroke',
             stylers: [{"color": "#E6E6E6" }]
+          },
+          {
+            featureType: 'landscape.natural',
+            elementType: 'geometry',
+            stylers: [{visibility: 'off'}]
           }
           ]
         });
