@@ -6,18 +6,14 @@
   <meta charset="utf-8">
   <title>Places Searchbox</title>
 
-  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
   <link rel="stylesheet" href="styles/reset.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-    body {
+    body, button {
       font-family: Microsoft JhengHei;
       font-size: 14px;
       color: black;
       font-weight: bolder;
-      border: 2px solid lightblue;
     }
 
     #map {
@@ -31,7 +27,7 @@
       width: 100%;
       margin-left: auto;
       margin-right: inherit;
-      height: auto;
+      height: 100vh;
       position: absolute;
     }
 
@@ -56,8 +52,6 @@
       padding: 2px;
     }
 
-    .date {}
-
     .title,
     .icon {
       width: 15%;
@@ -72,6 +66,18 @@
       width: 60%;
       background-color: white;
     }
+
+    .confirm {
+      position: absolute;
+      bottom: 3vh;
+      left: 10vw;
+      height: 7vh;
+      width: 80vw;
+      background-color: lightblue;
+      border: 3px solid skyblue;
+      border-radius: 25px;
+    }
+
   </style>
 </head>
 
@@ -96,10 +102,12 @@
             <td class="icon"><i class="fa fa-map-marker"></i></td>
           </tr>
         </table>
-      </div>
 
-      <div id="map"></div>
+        <button class="confirm">下一步</button>
+      </div>
+      
     </div>
+    <div id="map"></div>
   </div>
 
 
