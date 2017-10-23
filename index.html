@@ -9,7 +9,17 @@
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
   <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <link rel="stylesheet" href="styles/reset.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
+    body {
+      font-family: Microsoft JhengHei;
+      font-size: 14px;
+      color: black;
+      font-weight: bolder;
+      border: 2px solid lightblue;
+    }
+
     #map {
       z-index: 0;
       height: 100vh;
@@ -25,22 +35,43 @@
       position: absolute;
     }
 
-    body {
-      margin: 0px;
-    }
-
     .ui-content {
       padding: 0px;
     }
 
-    .date, .up, .down{
-      margin: auto;
-      margin-top: 2vh;
+    .form {
+      margin: 3vh auto 0;
+      width: 90%;
+      border: 1px solid lightblue;
+    }
+
+    tr {
       height: 8vh;
-      width: 80%;
-      background-color: white;
+    }
+
+    td {
+      border-bottom: 1px solid lightblue; 
+      vertical-align: middle;
+      text-align: center;
+      padding: 2px;
+    }
+
+    .date {}
+
+    .title,
+    .icon {
+      width: 15%;
+      background-color: #E2E2E2;
     }
     
+    .fa {
+      font-size: 24px;
+    }
+
+    .data {
+      width: 60%;
+      background-color: white;
+    }
   </style>
 </head>
 
@@ -48,12 +79,23 @@
   <div data-role="page">
     <div data-role="content">
       <div class="content-inner">
-        <div class="date">
-
-        </div>
-        <div class="up">
-        </div>
-        <div class="down"></div>
+        <table class="form">
+          <tr class="date">
+            <td class="title">日期</td>
+            <td class="data"></td>
+            <td class="icon"><i class="fa fa-calendar"></i></td>
+          </tr>
+          <tr>
+            <td class="title">上車地點</td>
+            <td class="data"></td>
+            <td class="icon"><i class="fa fa-map-marker"></i></td>
+          </tr>
+          <tr>
+            <td class="title">下車地點</td>
+            <td class="data"></td>
+            <td class="icon"><i class="fa fa-map-marker"></i></td>
+          </tr>
+        </table>
       </div>
 
       <div id="map"></div>
