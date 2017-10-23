@@ -78,6 +78,21 @@
       border-radius: 25px;
     }
 
+    .location{
+      position: fixed;
+      top: calc(50vh - 11px);
+      left: calc(50vw - 20px);
+      font-size: 40px;
+      color: orange;
+    }
+
+    .cubee{
+      position: fixed;
+      top: calc(50vh - 35px);
+      left: calc(50vw + 10px);
+      height: 70px;
+    }
+
   </style>
 </head>
 
@@ -102,7 +117,11 @@
             <td class="icon"><i class="fa fa-map-marker"></i></td>
           </tr>
         </table>
-
+        <div class="center">
+            <i class="fa fa-map-marker location"></i>
+            <img src="images/hellocubee.png" alt="cubee" class="cubee">
+        </div>
+        
         <button class="confirm">下一步</button>
       </div>
       
