@@ -5,7 +5,7 @@
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
   <title>Places Searchbox</title>
-
+  
   <link rel="stylesheet" href="styles/reset.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
@@ -38,15 +38,14 @@
     .form {
       margin: 3vh auto 0;
       width: 90%;
-      border: 1px solid lightblue;
     }
 
     tr {
       height: 8vh;
+      border: 1px solid black;
     }
 
     td {
-      border-bottom: 1px solid lightblue; 
       vertical-align: middle;
       text-align: center;
       padding: 2px;
@@ -56,7 +55,7 @@
     .icon {
       width: 15%;
       background-color: #E2E2E2;
-    }
+    } 
     
     .fa {
       font-size: 24px;
@@ -70,12 +69,18 @@
     .confirm {
       position: fixed;
       bottom: 3vh;
-      left: 10vw;
+      left: 5vw;
       height: 7vh;
-      width: 80vw;
-      background-color: lightblue;
-      border: 3px solid skyblue;
+      width: 90vw;
+      color: white;
+      background-color: #008CBA;
+      border: 2px solid black;
       border-radius: 25px;
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+
+    .none {
+      display: none;
     }
 
     .location{
@@ -101,17 +106,17 @@
     <div data-role="content">
       <div class="content-inner">
         <table class="form">
-          <tr class="date">
-            <td class="title">日期</td>
+          <tr class="none" id="date">
+            <td class="title">日期時間</td>
             <td class="data"></td>
             <td class="icon"><i class="fa fa-calendar"></i></td>
           </tr>
-          <tr>
+          <tr id="getOn">
             <td class="title">上車地點</td>
             <td class="data"></td>
             <td class="icon"><i class="fa fa-map-marker"></i></td>
           </tr>
-          <tr>
+          <tr class="none" id="getOff">
             <td class="title">下車地點</td>
             <td class="data"></td>
             <td class="icon"><i class="fa fa-map-marker"></i></td>
@@ -122,15 +127,20 @@
             <img src="images/hellocubee.png" alt="cubee" class="cubee">
         </div>
         
-        <button class="confirm">下一步</button>
+        <button class="confirm" id="confirm_1">確認上車位置</button>
+        <button class="confirm none" id="confirm_2">輸入下車位置</button>
+        <button class="confirm none" id="confirm_3">確認下車位置</button>
+        <button class="confirm none" id="confirm_4">輸入日期時間</button>
+        <button class="confirm none" id="confirm_5">開始叫車</button>
       </div>
       
     </div>
     <div id="map"></div>
   </div>
 
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="scripts/main.js"></script>
+  <script src="scripts/test.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJj2Wreyszitgd1b3Y09pK__W161VZaIc&libraries=places&callback=initMap"
     async defer></script>
 

@@ -1,14 +1,16 @@
 // This example requires the Places library. Include the libraries=places
       // parameter when you first load the API. For example:
       // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
+		var marker;
+		var map;
       function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
+          map = new google.maps.Map(document.getElementById('map'), {
           // mapTypeControl: false,
           // scaleControl:false,
           disableDefaultUI : true,
           center: {lat: 25.0339640, lng: 121.5644720},
-          zoom: 13,
+          zoom: 17,
+          clickableIcons: false,          
           gestureHandling:'cooperative',
           styles: [
   		  {
@@ -91,15 +93,67 @@
 
         var geocoder = new google.maps.Geocoder;
         var infowindow = new google.maps.InfoWindow;
+        var infoWindow = new google.maps.InfoWindow({map: map});
+        //  獲取當前GPS======================================================================
+		
+		GPS();
+       
+        //===================================================================================
 
-        map.addListener("dragend", function(){   
+        map.addListener("dragend", function(){ 
+        	if(marker!=null)
+        		marker.setMap(null);
 
-        	var center = map.getCenter();  // 這是經緯度=====================================
+        	var center = map.getCenter();  // 經緯度===
+        	marker = new google.maps.Marker({
+          	map: map,
+          	//draggable: true,
+        	//animation: google.maps.Animation.DROP,
+         	position: {lat: center.lat(), lng: center.lng()}
+        });              	
         	geocodeLatLng(geocoder, map, infowindow,center);
+
 		});
 
         new AutocompleteDirectionsHandler(map);
+      }  
+
+      function GPS(){
+      	 if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            marker = new google.maps.Marker({
+          	map: map,
+         	position: pos
+        	});
+
+            // infoWindow.setPosition(pos);
+            // infoWindow.setContent('Location found.');
+
+            map.setCenter(pos);
+
+          }, function() {
+            handleLocationError(true,map.getCenter());
+          });
+        } else {
+          //handleLocationError(false, infoWindow, map.getCenter()); 
+          alert('請開啟GPS或定位功能');
+        }
       }
+
+      //Animation================================================ 動畫目前沒用
+      function toggleBounce() {
+        if (marker.getAnimation() !== null) {
+          marker.setAnimation(null);
+        } else {
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+      }      
+	  //=========================================================
 
       function geocodeLatLng(geocoder, map, infowindow,center) {
         var input = center;      
@@ -118,10 +172,8 @@
         });
       }
 
-       /**
-        * @constructor
-       */
-      function AutocompleteDirectionsHandler(map) {  // 路線規劃
+	// 路線規劃==============================================================
+      function AutocompleteDirectionsHandler(map) {  
         this.map = map;
         this.originPlaceId = null;
         this.destinationPlaceId = null;
@@ -141,6 +193,14 @@
 
         this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
         this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
+      }
+	// ========================================================================
+      
+      function handleLocationError(browserHasGeolocation,pos) {
+        //infoWindow.setPosition(pos);
+        alert(browserHasGeolocation ?
+                              '請開啟GPS或定位功能' :
+                              '目前的瀏覽器可能不支援喔');
       }
 
       AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
