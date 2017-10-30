@@ -174,7 +174,7 @@
           if (status === 'OK') {
             if (results[0]) {
             	  //window.alert(results[0].formatted_address);  // 這是地址==================
-               text.setAttribute("value",results[0].formatted_address);
+               text.value = results[0].formatted_address;
             } else {
               window.alert('No results found');
             }
