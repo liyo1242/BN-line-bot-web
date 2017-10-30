@@ -93,7 +93,7 @@
         //var infoWindow = new google.maps.InfoWindow({map: map});
         //  獲取當前GPS======================================================================
 		
-		GPS();
+		    GPS();
        
         //===================================================================================
 
@@ -111,9 +111,8 @@
         });              	
         	geocodeLatLng(geocoder, map,center);
 
-		});
-
-        new AutocompleteDirectionsHandler(map);
+		});    
+          new AutocompleteDirectionsHandler(map);        
       }  
 
       function GPS(){
@@ -174,7 +173,9 @@
           if (status === 'OK') {
             if (results[0]) {
             	  //window.alert(results[0].formatted_address);  // 這是地址==================
+               if(decideStep== 1 || decideStep==0){
                text.value = results[0].formatted_address;
+              }
             } else {
               window.alert('No results found');
             }
