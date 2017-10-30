@@ -5,11 +5,12 @@
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
   <title>Places Searchbox</title>
-  
+
   <link rel="stylesheet" href="styles/reset.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-    body, button {
+    body,
+    button {
       font-family: Microsoft JhengHei;
       font-size: 14px;
       color: black;
@@ -55,8 +56,8 @@
     .icon {
       width: 15%;
       background-color: #E2E2E2;
-    } 
-    
+    }
+
     .fa {
       font-size: 24px;
     }
@@ -66,39 +67,7 @@
       background-color: white;
     }
 
-    .confirm {
-      position: fixed;
-      bottom: 3vh;
-      left: 5vw;
-      height: 7vh;
-      width: 90vw;
-      color: white;
-      background-color: #008CBA;
-      border: 2px solid black;
-      border-radius: 25px;
-      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    }
-
-    .none {
-      display: none;
-    }
-
-    .location{
-      position: fixed;
-      top: calc(50vh - 11px);
-      left: calc(50vw - 20px);
-      font-size: 40px;
-      color: orange;
-    }
-
-    .cubee{
-      position: fixed;
-      top: calc(50vh - 35px);
-      left: calc(50vw + 10px);
-      height: 70px;
-    }
-
-    .gps{
+    .gps {
       position: absolute;
       margin-top: 1vh;
       right: 5%;
@@ -106,7 +75,54 @@
       background-color: #E2E2E2;
       border: 1px solid black;
     }
+    /*******************************************************/
 
+    .center {
+      position: absolute;
+      z-index: 99;
+    }
+
+    .location {
+      position: fixed;
+      top: calc(50vh - 11px);
+      left: calc(50vw - 20px);
+      font-size: 40px;
+      color: orange;
+    }
+
+    .cubee {
+      position: fixed;
+      top: calc(50vh - 35px);
+      left: calc(50vw + 10px);
+      height: 70px;
+    }
+    /*******************************************************/
+
+    .bottom {
+      position: absolute;
+      height: auto;
+      width: 100%;
+      bottom: 0;
+      z-index: 99;
+    }
+
+    .bottom-inner {
+      width: 90%;
+      margin: 0 auto 3vh;
+    }
+
+    .confirm {
+      margin-top: 1vh;
+      height: 7vh;
+      width: 100%;
+      background-color: #008CBA;
+      border: 2px solid black;
+      border-radius: 25px;
+    }
+
+    .none {
+      display: none;
+    }
   </style>
 </head>
 
@@ -115,11 +131,6 @@
     <div data-role="content">
       <div class="content-inner">
         <table class="form">
-          <tr class="none" id="date">
-            <td class="title">日期時間</td>
-            <td class="data"></td>
-            <td class="icon"><i class="fa fa-calendar"></i></td>
-          </tr>
           <tr id="getOn">
             <td class="title">上車地點</td>
             <td class="data"></td>
@@ -130,25 +141,33 @@
             <td class="data"></td>
             <td class="icon"><i class="fa fa-map-marker"></i></td>
           </tr>
+          <tr class="none" id="date">
+            <td class="title">日期時間</td>
+            <td class="data"></td>
+            <td class="icon"><i class="fa fa-calendar"></i></td>
+          </tr>
         </table>
-        <div>
-          <button class="gps">
+        <button class="gps" onclick="GPS()">
             <i class="fa fa-map-marker"></i>
-          </button>
-        </div>
-        <div class="center">
-            <i class="fa fa-map-marker location"></i>
-            <img src="images/hellocubee.png" alt="cubee" class="cubee">
-        </div>
-        
-        <button class="confirm" id="confirm_1">確認上車位置</button>
-        <button class="confirm none" id="confirm_2">輸入下車位置</button>
-        <button class="confirm none" id="confirm_3">確認下車位置</button>
-        <button class="confirm none" id="confirm_4">輸入日期時間</button>
-        <button class="confirm none" id="confirm_5">開始叫車</button>
+        </button>
       </div>
-      
+
+      <div class="center">
+        <i class="fa fa-map-marker location"></i>
+        <!-- <img src="images/hellocubee.png" alt="cubee" class="cubee"> -->
+      </div>
+
+      <div class="bottom">
+        <div class="bottom-inner">
+          <button class="confirm" id="confirm_1">確認上車位置</button>
+          <button class="confirm none" id="confirm_2">輸入下車位置</button>
+          <button class="confirm none" id="confirm_3">確認下車位置</button>
+          <button class="confirm none" id="confirm_4">輸入日期時間</button>
+          <button class="confirm none" id="confirm_5">開始叫車</button>
+        </div>
+      </div>
     </div>
+
     <div id="map"></div>
   </div>
 

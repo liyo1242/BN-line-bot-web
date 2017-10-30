@@ -10,8 +10,7 @@
           disableDefaultUI : true,
           center: {lat: 25.0339640, lng: 121.5644720},
           zoom: 17,
-          clickableIcons: false,          
-          gestureHandling:'cooperative',
+          clickableIcons: false,        
           styles: [
   		  {
     		featureType: "landscape",
@@ -100,15 +99,16 @@
        
         //===================================================================================
 
-        map.addListener("dragend", function(){ 
+        map.addListener("idle", function(){ 
         	if(marker!=null)
         		marker.setMap(null);
 
         	var center = map.getCenter();  // 經緯度===
         	marker = new google.maps.Marker({
           	map: map,
+            icon: 'images_resized.png',
           	//draggable: true,
-        	//animation: google.maps.Animation.DROP,
+        	  //animation: google.maps.Animation.DROP,
          	position: {lat: center.lat(), lng: center.lng()}
         });              	
         	geocodeLatLng(geocoder, map, infowindow,center);
@@ -125,9 +125,11 @@
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
-
+            if(marker!=null)
+            marker.setMap(null);
             marker = new google.maps.Marker({
           	map: map,
+            icon: 'images_resized.png',
          	position: pos
         	});
 

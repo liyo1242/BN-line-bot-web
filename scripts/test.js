@@ -20,5 +20,5 @@ $(document).ready(function(){
 });
 
 function hideBtn(){
-    $("confirm").hide();
+    $(".confirm").hide();
 }
