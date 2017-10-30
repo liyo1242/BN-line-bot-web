@@ -91,8 +91,8 @@
         });
 
         var geocoder = new google.maps.Geocoder;
-        var infowindow = new google.maps.InfoWindow;
-        var infoWindow = new google.maps.InfoWindow({map: map});
+        //var infowindow = new google.maps.InfoWindow;
+        //var infoWindow = new google.maps.InfoWindow({map: map});
         //  獲取當前GPS======================================================================
 		
 		GPS();
@@ -106,7 +106,7 @@
         	var center = map.getCenter();  // 經緯度===
         	marker = new google.maps.Marker({
           	map: map,
-            icon: 'images_resized.png',
+            icon: 'hellocubee-small.png',
           	//draggable: true,
         	  //animation: google.maps.Animation.DROP,
          	position: {lat: center.lat(), lng: center.lng()}
@@ -129,7 +129,7 @@
             marker.setMap(null);
             marker = new google.maps.Marker({
           	map: map,
-            icon: 'images_resized.png',
+            icon: 'hellocubee-small.png',
          	position: pos
         	});
 
@@ -160,6 +160,7 @@
       function geocodeLatLng(geocoder, map, infowindow,center) {
         var input = center;      
         var latlng = {lat: center.lat(), lng: center.lng()};
+        
 
         geocoder.geocode({'location': latlng}, function(results, status) {
           if (status === 'OK') {
@@ -181,8 +182,8 @@
         this.destinationPlaceId = null;
         this.travelMode = 'DRIVING';
         //================================================================================
-        var originInput = document.getElementById('on-the-place');
-        var destinationInput = document.getElementById('get-off-location');
+        var originInput = document.getElementById('getOnPlace');
+        var destinationInput = document.getElementById('getOffPlace');
 		//================================================================================
         this.directionsService = new google.maps.DirectionsService;
         this.directionsDisplay = new google.maps.DirectionsRenderer;

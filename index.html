@@ -10,7 +10,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     body,
-    button {
+    button,
+    input {
       font-family: Microsoft JhengHei;
       font-size: 14px;
       color: black;
@@ -67,6 +68,16 @@
       background-color: white;
     }
 
+    input {
+      border: 0;
+      padding: 0;
+      width: 90%;
+    }
+
+    input:focus{
+      outline: none;
+    }
+
     .gps {
       position: absolute;
       margin-top: 1vh;
@@ -75,27 +86,7 @@
       background-color: #E2E2E2;
       border: 1px solid black;
     }
-    /*******************************************************/
 
-    .center {
-      position: absolute;
-      z-index: 99;
-    }
-
-    .location {
-      position: fixed;
-      top: calc(50vh - 11px);
-      left: calc(50vw - 20px);
-      font-size: 40px;
-      color: orange;
-    }
-
-    .cubee {
-      position: fixed;
-      top: calc(50vh - 35px);
-      left: calc(50vw + 10px);
-      height: 70px;
-    }
     /*******************************************************/
 
     .bottom {
@@ -133,12 +124,12 @@
         <table class="form">
           <tr id="getOn">
             <td class="title">上車地點</td>
-            <td class="data"></td>
+            <td class="data"><input type="text" id="getOnPlace" value=""></td>
             <td class="icon"><i class="fa fa-map-marker"></i></td>
           </tr>
           <tr class="none" id="getOff">
             <td class="title">下車地點</td>
-            <td class="data"></td>
+            <td class="data"><input type="text" id="getOffPlace" value=""></td>
             <td class="icon"><i class="fa fa-map-marker"></i></td>
           </tr>
           <tr class="none" id="date">
@@ -150,12 +141,7 @@
         <button class="gps" onclick="GPS()">
             <i class="fa fa-map-marker"></i>
         </button>
-      </div>
-
-      <div class="center">
-        <i class="fa fa-map-marker location"></i>
-        <!-- <img src="images/hellocubee.png" alt="cubee" class="cubee"> -->
-      </div>
+      </div>    
 
       <div class="bottom">
         <div class="bottom-inner">
