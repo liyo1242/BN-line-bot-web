@@ -1,6 +1,4 @@
-// This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
 		var marker;
 		var map;
       function initMap() {
@@ -111,7 +109,7 @@
         	  //animation: google.maps.Animation.DROP,
          	position: {lat: center.lat(), lng: center.lng()}
         });              	
-        	geocodeLatLng(geocoder, map, infowindow,center);
+        	geocodeLatLng(geocoder, map,center);
 
 		});
 
@@ -157,15 +155,26 @@
       }      
 	  //=========================================================
 
-      function geocodeLatLng(geocoder, map, infowindow,center) {
+      function geocodeLatLng(geocoder, map,center) {
         var input = center;      
         var latlng = {lat: center.lat(), lng: center.lng()};
-        
+
+        var text;
+
+        if (decideStep == 0){
+           text = document.getElementById("getOnPlace");
+        } else if (decideStep == 1){
+           text = document.getElementById("getOffPlace");
+        } else {
+
+        }
+
 
         geocoder.geocode({'location': latlng}, function(results, status) {
           if (status === 'OK') {
             if (results[0]) {
-            	 // window.alert(results[0].formatted_address);  // 這是地址==================
+            	  //window.alert(results[0].formatted_address);  // 這是地址==================
+               text.setAttribute("value",results[0].formatted_address);
             } else {
               window.alert('No results found');
             }
