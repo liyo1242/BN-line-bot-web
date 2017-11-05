@@ -40,11 +40,11 @@
     .form {
       margin: 20px auto 0;
       width: 90%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     tr {
       height: 40px;
-
     }
 
     td {
@@ -66,11 +66,11 @@
 
     .title
      {
-      width: 75px;
+      width: 70px;
     }
 
     .icon{
-      width: 40px;
+      width: 35px;
     }
 
     .fa {
@@ -98,9 +98,10 @@
       height: 40px;
       width: 40px;
       color: red;
-      background-color: #E2E2E2;
-      border: 1px solid black;
+      background-color: white;
+      border: 0px solid black;
       border-radius: 20px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     /*******************************************************/
@@ -124,8 +125,9 @@
       height: 70px;
       width: 70px;
       background-color: white;
-      border: 1px solid black;
+      border: 0px solid black;
       border-radius: 40px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     .none {
@@ -148,12 +150,16 @@
           </tr>
           <tr class="none" id="getOff">
             <td class="title">下車地點</td>
+            <td class="line"><span class="lines"></span></td>
             <td class="data"><input type="text" id="getOffPlace" value=""></td>
+            <td class="line"><span class="lines"></span></td>
             <td class="icon"><i class="fa fa-map-marker"></i></td>
           </tr>
           <tr class="none" id="date">
             <td class="title">日期時間</td>
+            <td class="line"><span class="lines"></span></td>
             <td class="data"><input type="datetime-local"></td>
+            <td class="line"><span class="lines"></span></td>
             <td class="icon"><i class="fa fa-calendar"></i></td>
           </tr>
         </table>
