@@ -3,8 +3,9 @@ $(document).ready(function () {
         getOnPlace = $("#getOnPlace").val();
         if (getOnPlace) {
             $('#getOnPlace').attr('readonly', true);
-            $(".btn").hide();
-            $("#next_getOff,#getOff,#back").show();
+            $(".feature").hide();
+            $("#next_getOff,#back").show();
+            $("table").css("height","80px");
             decideStep = 1;
         } else {
             alert("請輸入上車位置");
@@ -14,8 +15,9 @@ $(document).ready(function () {
         getOffPlace = $("#getOffPlace").val();
         if (getOffPlace) {
             $('#getOffPlace').attr('readonly', true);
-            $(".btn").hide();
-            $("#taxi,#date,#back").show();
+            $(".feature").hide();
+            $("#taxi,#back").show();
+            $("table").css("height","120px");
             decideStep = 2;
         } else {
             alert("請輸入下車位置");
@@ -37,16 +39,18 @@ $(document).ready(function () {
             case 1:
                 $("#getOnPlace").attr("readOnly", false).val("");
                 $("#getOffPlace").val("");
-                $(".btn,#getOff").hide();
+                $(".feature").hide();
                 $("#next_getOn").show();
+                $("table").css("height","40px");
                 getOnPlace = "";
                 decideStep = 0;
                 break;
             case 2:
                 $("#getOffPlace").attr("readOnly", false).val("");
                 $("#dateTime").val("");
-                $(".btn,#date").hide();
+                $(".feature").hide();
                 $("#next_getOff,#back").show();
+                $("table").css("height","80px");
                 getOffPlace = "";
                 decideStep = 1;
                 break;
