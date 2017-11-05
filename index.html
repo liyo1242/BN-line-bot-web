@@ -82,6 +82,9 @@
     .fa {
       font-size: 24px;
     }
+    .fa-arrow-right,.fa-taxi{
+      font-size: 28px;
+    }
 
     .data {}
 
@@ -97,7 +100,7 @@
 
     .gps {
       position: absolute;
-      margin-top: 10px;
+      margin-top: 15px;
       right: 5%;
       height: 40px;
       width: 40px;
@@ -123,8 +126,8 @@
       position: absolute;
       bottom: 20px;
       right: 5%;
-      height: 70px;
-      width: 70px;
+      height: 60px;
+      width: 60px;
       background-color: white;
       border: 0px solid black;
       border-radius: 40px;
@@ -152,36 +155,34 @@
             <td class="line"><span class="lines"></span></td>
             <td class="data"><input type="text" id="getOnPlace" value=""></td>
             <td class="line"><span class="lines"></span></td>
-            <td class="icon"><i class="fa fa-map-marker"></i></td>
+            <td class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></td>
           </tr>
           <tr class="none" id="getOff">
             <td class="title">下車地點</td>
             <td class="line"><span class="lines"></span></td>
             <td class="data"><input type="text" id="getOffPlace" value=""></td>
             <td class="line"><span class="lines"></span></td>
-            <td class="icon"><i class="fa fa-map-marker"></i></td>
+            <td class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></td>
           </tr>
           <tr class="none" id="date">
             <td class="title">日期時間</td>
             <td class="line"><span class="lines"></span></td>
             <td class="data"><input type="datetime-local"></td>
             <td class="line"><span class="lines"></span></td>
-            <td class="icon"><i class="fa fa-calendar"></i></td>
+            <td class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></td>
           </tr>
         </table>
         </div>
         <button class="gps" onclick="GPS()">
-            <i class="fa fa-map-marker"></i>
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
         </button>
       </div>
 
       <div class="bottom">
         <div class="bottom-inner">
-          <button class="confirm" id="confirm_1">確認位置</button>
-          <button class="confirm none" id="confirm_2">下車位置</button>
-          <button class="confirm none" id="confirm_3">確認位置</button>
-          <button class="confirm none" id="confirm_4">輸入時間</button>
-          <button class="confirm none" id="confirm_5">開始叫車</button>
+          <button class="confirm" id="confirm_1"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+          <button class="confirm none" id="confirm_2"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+          <button class="confirm none" id="confirm_3"><i class="fa fa-taxi" aria-hidden="true"></i></button>
         </div>
       </div>
     </div>

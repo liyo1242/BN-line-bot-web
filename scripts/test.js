@@ -1,28 +1,17 @@
 $(document).ready(function(){
     $("#confirm_1").click(function(){
-        hideBtn();
-        $("#confirm_2").show();
+        $(".confirm").hide();
+        $("#confirm_2,#getOff").show();
         decideStep = 1;
     });
     $("#confirm_2").click(function(){
-        hideBtn();
-        $("#confirm_3,#getOff").show();
-    });
-    $("#confirm_3").click(function(){
-        hideBtn();
-        $("#confirm_4").show();
+        $(".confirm").hide();
+        $("#confirm_3,#date").show();
         decideStep = 2;
     });
-    $("#confirm_4").click(function(){
-        hideBtn();
-        $("#confirm_5,#date").show();
-    });
-    $("#confirm_5").click(function(){
+    $("#confirm_3").click(function(){
+        $("#confirm_4").show();      
     });
 });
-
-function hideBtn(){
-    $(".confirm").hide();
-}
 
 var decideStep = 0;
