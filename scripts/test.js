@@ -1,28 +1,62 @@
-$(document).ready(function(){
-    $("#confirm_1").click(function(){
-        hideBtn();
-        $("#confirm_2").show();
-        decideStep = 1;
+$(document).ready(function () {
+    $("#next_getOn").click(function () {
+        getOnPlace = $("#getOnPlace").val();
+        if (getOnPlace) {
+            $('#getOnPlace').attr('readonly', true);
+            $(".btn").hide();
+            $("#next_getOff,#getOff,#back").show();
+            decideStep = 1;
+        } else {
+            alert("請輸入上車位置");
+        }
     });
-    $("#confirm_2").click(function(){
-        hideBtn();
-        $("#confirm_3,#getOff").show();
+    $("#next_getOff").click(function () {
+        getOffPlace = $("#getOffPlace").val();
+        if (getOffPlace) {
+            $('#getOffPlace').attr('readonly', true);
+            $(".btn").hide();
+            $("#taxi,#date,#back").show();
+            decideStep = 2;
+        } else {
+            alert("請輸入下車位置");
+        }
     });
-    $("#confirm_3").click(function(){
-        hideBtn();
-        $("#confirm_4").show();
-        decideStep = 2;
+    $("#taxi").click(function () {
+        dateTime = $("#dateTime").val();
+        if (dateTime) {
+            alert(getOnPlace + "\n" + getOffPlace + "\n" + dateTime);
+        } else {
+            alert("請輸入日期時間");
+        }
     });
-    $("#confirm_4").click(function(){
-        hideBtn();
-        $("#confirm_5,#date").show();
-    });
-    $("#confirm_5").click(function(){
-    });
+    $("#back").click(function () {
+        switch (decideStep) {
+            case 0:
+                alert("error");
+                break;
+            case 1:
+                $("#getOnPlace").attr("readOnly", false).val("");
+                $("#getOffPlace").val("");
+                $(".btn,#getOff").hide();
+                $("#next_getOn").show();
+                getOnPlace = "";
+                decideStep = 0;
+                break;
+            case 2:
+                $("#getOffPlace").attr("readOnly", false).val("");
+                $("#dateTime").val("");
+                $(".btn,#date").hide();
+                $("#next_getOff,#back").show();
+                getOffPlace = "";
+                decideStep = 1;
+                break;
+            default:
+                alert("error");
+        }
+    })
 });
 
-function hideBtn(){
-    $(".confirm").hide();
-}
-
 var decideStep = 0;
+var getOnPlace;
+var getOffPlace;
+var dateTime;
