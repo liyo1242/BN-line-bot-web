@@ -38,7 +38,7 @@
     }
 
     .table-wrapper {
-      margin: 20px auto 0;
+      margin: 15px auto 0;
       width: 90%;
       overflow: hidden;
       border-radius: 10px;
@@ -129,10 +129,7 @@
       margin-bottom: 3px;
     }
 
-    .confirm {
-      position: absolute;
-      bottom: 20px;
-      right: 5%;
+    .btn {
       height: 60px;
       width: 60px;
       font-size: 10px;
@@ -140,6 +137,18 @@
       border: 0px solid black;
       border-radius: 40px;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .lower-right-corner{
+      position: absolute;
+      bottom:20px;
+      right: 5%;
+    }
+
+    .lower-left-corner{
+      position: absolute;
+      bottom: 20px;
+      left: 5%;
     }
 
     .none {
@@ -188,9 +197,10 @@
 
       <div class="bottom">
         <div class="bottom-inner">
-          <button class="confirm" id="confirm_1"><span><i class="fa fa-arrow-right" aria-hidden="true"></i><br>下一步</span></button>
-          <button class="confirm none" id="confirm_2"><span><i class="fa fa-arrow-right" aria-hidden="true"></i><br>下一步</span></button>
-          <button class="confirm none" id="confirm_3"><span><i class="fa fa-taxi" aria-hidden="true"></i><br>開始叫車</span></button>
+          <button class="btn lower-right-corner" id="next_getOn"><span><i class="fa fa-arrow-right" aria-hidden="true"></i><br>下一步</span></button>
+          <button class="btn lower-right-corner none" id="next_getOff"><span><i class="fa fa-arrow-right" aria-hidden="true"></i><br>下一步</span></button>
+          <button class="btn lower-right-corner none" id="taxi"><span><i class="fa fa-taxi" aria-hidden="true"></i><br>開始叫車</span></button>
+          <button class="btn lower-left-corner none" id="back"><span><i class="fa fa-reply" aria-hidden="true"></i><br>上一步</span></button>
         </div>
       </div>
     </div>
