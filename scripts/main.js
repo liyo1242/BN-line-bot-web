@@ -112,7 +112,8 @@
         	geocodeLatLng(geocoder, map,center);
 
 		});    
-          new AutocompleteDirectionsHandler(map);        
+
+           new AutocompleteDirectionsHandler(map);        
       }  
 
       function GPS(){
@@ -184,8 +185,17 @@
           }
         });
       }
+// ========================================================================
+      
+      function handleLocationError(browserHasGeolocation,pos) {
+        //infoWindow.setPosition(pos);
+        alert(browserHasGeolocation ?
+                              '請開啟GPS或定位功能' :
+                              '目前的瀏覽器可能不支援喔');
+      }
 
 	// 路線規劃==============================================================
+
       function AutocompleteDirectionsHandler(map) {  
         this.map = map;
         this.originPlaceId = null;
@@ -207,15 +217,7 @@
         this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
         this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
       }
-	// ========================================================================
-      
-      function handleLocationError(browserHasGeolocation,pos) {
-        //infoWindow.setPosition(pos);
-        alert(browserHasGeolocation ?
-                              '請開啟GPS或定位功能' :
-                              '目前的瀏覽器可能不支援喔');
-      }
-
+	
       AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
         // 範圍限界
         var me = this;
@@ -254,5 +256,3 @@
           }
         });
       };
-
-	
