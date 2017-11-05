@@ -37,10 +37,16 @@
       padding: 0px;
     }
 
-    .form {
+    .table-wrapper {
       margin: 20px auto 0;
       width: 90%;
+      overflow: hidden;
+      border-radius: 10px;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    table {
+      width: 100%;
     }
 
     tr {
@@ -54,22 +60,22 @@
       background-color: white;
     }
 
-    .line{
+    .line {
       padding: 0;
       width: 0;
     }
-    .lines{
+
+    .lines {
       height: 80%;
       border-right: 2px solid black;
       border-radius: 2px;
     }
 
-    .title
-     {
+    .title {
       width: 70px;
     }
 
-    .icon{
+    .icon {
       width: 35px;
     }
 
@@ -77,9 +83,7 @@
       font-size: 24px;
     }
 
-    .data {
-
-    }
+    .data {}
 
     input {
       border: 0;
@@ -87,7 +91,7 @@
       width: 90%;
     }
 
-    input:focus{
+    input:focus {
       outline: none;
     }
 
@@ -103,7 +107,6 @@
       border-radius: 20px;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
-
     /*******************************************************/
 
     .bottom {
@@ -114,9 +117,7 @@
       z-index: 99;
     }
 
-    .bottom-inner {
-
-    }
+    .bottom-inner {}
 
     .confirm {
       position: absolute;
@@ -134,10 +135,7 @@
       display: none;
     }
 
-    input:focus{
-      background-color: white;
-    }
-    input[type="datetime-local"]{
+    input[type="datetime-local"] {
       background-color: white;
     }
   </style>
@@ -147,6 +145,7 @@
   <div class="page">
     <div class="content">
       <div class="content-inner">
+        <div class="table-wrapper">
         <table class="form">
           <tr id="getOn">
             <td class="title">上車地點</td>
@@ -170,10 +169,11 @@
             <td class="icon"><i class="fa fa-calendar"></i></td>
           </tr>
         </table>
+        </div>
         <button class="gps" onclick="GPS()">
             <i class="fa fa-map-marker"></i>
         </button>
-      </div>    
+      </div>
 
       <div class="bottom">
         <div class="bottom-inner">
