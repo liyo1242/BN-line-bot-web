@@ -40,7 +40,6 @@
     .form {
       margin: 20px auto 0;
       width: 90%;
-      opacity: 0.9;
     }
 
     tr {
@@ -52,12 +51,16 @@
       vertical-align: middle;
       text-align: center;
       padding: 2px;
+      background-color: white;
     }
 
     .title,
-    .icon {
-      width: 15%;
-      background-color: #E2E2E2;
+     {
+      width: 20%;
+    }
+
+    .icon{
+      width: 10%
     }
 
     .fa {
@@ -66,7 +69,7 @@
 
     .data {
       width: 60%;
-      background-color: white;
+      
     }
 
     input {
@@ -128,17 +131,17 @@
       <div class="content-inner">
         <table class="form">
           <tr id="getOn">
-            <td class="title">上車<br>地點</td>
+            <td class="title">上車地點</td>
             <td class="data"><input type="text" id="getOnPlace" value=""></td>
             <td class="icon"><i class="fa fa-map-marker"></i></td>
           </tr>
           <tr class="none" id="getOff">
-            <td class="title">下車<br>地點</td>
+            <td class="title">下車地點</td>
             <td class="data"><input type="text" id="getOffPlace" value=""></td>
             <td class="icon"><i class="fa fa-map-marker"></i></td>
           </tr>
           <tr class="none" id="date">
-            <td class="title">日期<br>時間</td>
+            <td class="title">日期時間</td>
             <td class="data"><input type="datetime-local"></td>
             <td class="icon"><i class="fa fa-calendar"></i></td>
           </tr>
