@@ -10,7 +10,10 @@ $(document).ready(function(){
         decideStep = 2;
     });
     $("#confirm_3").click(function(){
-        $("#confirm_4").show();      
+        var getOnPlace = $("#getOnPlace").val();
+        var getOffPlace = $("#getOffPlace").val();
+        var dateTime = $("#dateTime").val();
+        alert(getOnPlace + "\n" + getOffPlace + "\n" + dateTime);
     });
 });
 
