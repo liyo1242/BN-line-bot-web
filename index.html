@@ -133,6 +133,21 @@
     .none {
       display: none;
     }
+
+    ::-webkit-datetime-edit-fields-wrapper {
+}
+::-webkit-datetime-edit-text {
+}
+::-webkit-datetime-edit-month-field, 
+::-webkit-datetime-edit-day-field, 
+::-webkit-datetime-edit-year-field {
+}
+::-webkit-inner-spin-button {
+    display: none;
+}
+::-webkit-calendar-picker-indicator:hover {
+   background:none;
+}
   </style>
 </head>
 
@@ -170,10 +185,10 @@
 
       <div class="bottom">
         <div class="bottom-inner">
-          <button class="confirm" id="confirm_1">確認上車位置</button>
-          <button class="confirm none" id="confirm_2">輸入下車位置</button>
-          <button class="confirm none" id="confirm_3">確認下車位置</button>
-          <button class="confirm none" id="confirm_4">輸入日期時間</button>
+          <button class="confirm" id="confirm_1">確認位置</button>
+          <button class="confirm none" id="confirm_2">下車位置</button>
+          <button class="confirm none" id="confirm_3">確認位置</button>
+          <button class="confirm none" id="confirm_4">輸入時間</button>
           <button class="confirm none" id="confirm_5">開始叫車</button>
         </div>
       </div>
