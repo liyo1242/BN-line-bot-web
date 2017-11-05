@@ -174,9 +174,13 @@
           if (status === 'OK') {
             if (results[0]) {
             	  //window.alert(results[0].formatted_address);  // 這是地址==================
+<<<<<<< HEAD
                if(decideStep== 1 || decideStep==0){
                text.value = results[0].formatted_address;
               }
+=======
+               text.value = results[0].formatted_address;
+>>>>>>> bf4cbbf8838ce62f6173a4b69e6d987386fe8ee6
             } else {
               window.alert('No results found');
             }
