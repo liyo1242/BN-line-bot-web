@@ -6,6 +6,8 @@ $(document).ready(function () {
             $(".feature").hide();
             $("#next_getOff,#back").show();
             $("table").css("height","80px");
+            $(".icon").css("color", "black");
+            $("#getOff .icon").css("color", "orange");
             decideStep = 1;
         } else {
             alert("請輸入上車位置");
@@ -18,6 +20,8 @@ $(document).ready(function () {
             $(".feature").hide();
             $("#taxi,#back").show();
             $("table").css("height","120px");
+            $(".icon").css("color", "black");
+            $("#date .icon").css("color", "orange");
             decideStep = 2;
         } else {
             alert("請輸入下車位置");
@@ -42,6 +46,8 @@ $(document).ready(function () {
                 $(".feature").hide();
                 $("#next_getOn").show();
                 $("table").css("height","40px");
+                $(".icon").css("color", "black");
+                $("#getOn .icon").css("color", "orange");
                 getOnPlace = "";
                 decideStep = 0;
                 break;
@@ -51,6 +57,8 @@ $(document).ready(function () {
                 $(".feature").hide();
                 $("#next_getOff,#back").show();
                 $("table").css("height","80px");
+                $(".icon").css("color", "black");
+                $("#getOff .icon").css("color", "orange");
                 getOffPlace = "";
                 decideStep = 1;
                 break;
