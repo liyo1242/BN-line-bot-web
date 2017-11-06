@@ -24,6 +24,7 @@ $(document).ready(function () {
             $(".icon").css("color", "black");
             $("#date .icon").css("color", "orange");
             decideStep = 2;
+            lockMap();
             route();            
             $('.pac-container').remove();
         } else {
@@ -64,6 +65,8 @@ $(document).ready(function () {
                 $("#getOff .icon").css("color", "orange");
                 getOffPlace = "";
                 decideStep = 1;
+                callBear();
+                unlockMap();
                 removeRoute();
                 break;
             default:
