@@ -225,7 +225,6 @@
 // ========================================================================
       
       function handleLocationError(browserHasGeolocation,pos) {
-        //infoWindow.setPosition(pos);
         alert(browserHasGeolocation ?
                               '請開啟GPS或定位功能' :
                               '目前的瀏覽器可能不支援喔');
