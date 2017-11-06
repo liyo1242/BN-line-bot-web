@@ -9,6 +9,7 @@ $(document).ready(function () {
             $(".icon").css("color", "black");
             $("#getOff .icon").css("color", "orange");
             decideStep = 1;
+            $('.pac-container').remove();
         } else {
             alert("請輸入上車位置");
         }
@@ -23,6 +24,8 @@ $(document).ready(function () {
             $(".icon").css("color", "black");
             $("#date .icon").css("color", "orange");
             decideStep = 2;
+            route();            
+            $('.pac-container').remove();
         } else {
             alert("請輸入下車位置");
         }
@@ -61,6 +64,7 @@ $(document).ready(function () {
                 $("#getOff .icon").css("color", "orange");
                 getOffPlace = "";
                 decideStep = 1;
+                removeRoute();
                 break;
             default:
                 alert("error");
