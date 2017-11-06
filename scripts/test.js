@@ -70,6 +70,12 @@ $(document).ready(function () {
                 alert("error");
         }
     })
+    $("i.clear").click(function(){
+        var opacity = $(this).css("opacity");
+        if(opacity == 1){
+            $(this).prev().val("");
+        }
+    })
 });
 
 var decideStep = 0;
