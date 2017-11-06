@@ -1,18 +1,18 @@
 
   var marker;
   var map;
-    var directionsService; 
-    var directionsDisplay;
-    var originAutocomplete;
-    var destinationAutocomplete ;
-    var placeListener;
+  // Autocomplete sevice var==================
+  var directionsService; 
+  var directionsDisplay;
+  var originAutocomplete;
+  var destinationAutocomplete ;
+  var placeListener;
+  //==========================================
       function initMap() {        
           map = new google.maps.Map(document.getElementById('map'), {
-          // mapTypeControl: false,
-          // scaleControl:false,
           disableDefaultUI : true,
           center: {lat: 25.0339640, lng: 121.5644720},
-          zoom: 17,
+          zoom: 17, // Vision size
           clickableIcons: false,        
           styles: [
         {
@@ -94,32 +94,22 @@
         });
 
         var geocoder = new google.maps.Geocoder;
-        //var infowindow = new google.maps.InfoWindow;
-        //var infoWindow = new google.maps.InfoWindow({map: map});
-        //  獲取當前GPS======================================================================
-    
-        GPS();
-       
-        //===================================================================================
+        var originInput = document.getElementById('getOnPlace');
+        var destinationInput = document.getElementById('getOffPlace');
 
+        GPS();       
+        // map listener -> when the center change && the map stop sliding
         map.addListener("idle", function(){ 
           if(marker!=null)
             marker.setMap(null);
 
           var center = map.getCenter();  // 經緯度===
-            marker = new google.maps.Marker({
-              map: map,
-              icon: 'hellocubee-small.png',
-              //draggable: true,
-              //animation: google.maps.Animation.DROP,
-            position: {lat: center.lat(), lng: center.lng()}
-            });               
+          if(decideStep != 2){
+              callBear()
+            }               
           geocodeLatLng(geocoder, map,center);
 
-        }); 
-
-        var originInput = document.getElementById('getOnPlace');
-        var destinationInput = document.getElementById('getOffPlace');
+        });        
 
         directionsService = new google.maps.DirectionsService;
         directionsDisplay = new google.maps.DirectionsRenderer;
@@ -127,38 +117,45 @@
 
         originInput.addEventListener("click", function(){
             if(decideStep == 0){ // 沒有雞沒有鴨
-              originAutocomplete = new google.maps.places.Autocomplete(originInput);
               originPlaceId = null ;
-              destinationPlaceId = null ;          
-              setupPlaceChangedListener(originAutocomplete, 'ORIG');
-            }else if(decideStep == 1){// 輸入完上車 未輸入下車
-              removeAutocompleteListener(originAutocomplete);
               destinationPlaceId = null ;
-            }else if (decideStep == 2){// 輸入完上車 輸入完下車
-              //rm getOffPlace Lis
+              originAutocomplete = new google.maps.places.Autocomplete(originInput);                        
+              setupPlaceChangedListener(originAutocomplete, 'ORIG');//add getOnPlace Lis
+            }else if(decideStep == 1){// 輸入完上車 未輸入下車
+              removeAutocompleteListener(originAutocomplete);//rm getOnPlace Lis
+              destinationPlaceId = null ;
             }
         });
-
-        //destinationInput.addEventListener("mouse", function(){});
 
         destinationInput.addEventListener("click", function(){
             if(decideStep == 0){ // 沒有雞沒有鴨
               originPlaceId = null ;
-              destinationPlaceId = null ; 
-              //add getOnPlace Lis
+              destinationPlaceId = null ;               
             }else if(decideStep == 1){// 輸入完上車 未輸入下車
-              //rm getOnPlace Lis
-              destinationPlaceId = null ;
-              //add getOffPlace Lis
+              destinationPlaceId = null ;              
               destinationAutocomplete=new google.maps.places.Autocomplete(destinationInput);
-              setupPlaceChangedListener(destinationAutocomplete, 'DEST');
+              setupPlaceChangedListener(destinationAutocomplete, 'DEST');//add getOffPlace Lis
             }else if (decideStep == 2){// 輸入完上車 輸入完下車
-              removeAutocompleteListener(destinationAutocomplete);
-              //rm getOffPlace Lis
-
+              removeAutocompleteListener(destinationAutocomplete);//rm getOffPlace Lis          
             }
         });
-      }  
+      }
+
+      function lockMap(){
+        map.set('draggable',false);
+      }
+
+      function unlockMap(){
+        map.set('draggable',true);
+      } 
+
+      function callBear(){        
+        marker = new google.maps.Marker({
+          map: map,
+          icon: 'hellocubee-small.png',
+          position: {lat: map.getCenter().lat(), lng: map.getCenter().lng()}
+        });            
+      }
 
       function GPS(){
          if (navigator.geolocation) {
@@ -167,19 +164,13 @@
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
+
             if(marker!=null)
-            marker.setMap(null);
-            marker = new google.maps.Marker({
-            map: map,
-            icon: 'hellocubee-small.png',
-          position: pos
-          });
+              marker.setMap(null);
 
-            // infoWindow.setPosition(pos);
-            // infoWindow.setContent('Location found.');
-
+            map.setZoom(17);            
             map.setCenter(pos);
-
+            callBear();
           }, function() {
             handleLocationError(true,map.getCenter());
           });
@@ -209,10 +200,7 @@
            text = document.getElementById("getOnPlace");
         } else if (decideStep == 1){
            text = document.getElementById("getOffPlace");
-        } else {
-
         }
-
 
         geocoder.geocode({'location': latlng}, function(results, status) {
           if (status === 'OK') {
@@ -224,7 +212,7 @@
               }else if (decideStep == 1){
                text.value = results[0].formatted_address;
                destinationPlaceId = results[0].place_id;
-               console.log(originPlaceId + " -> " + destinationPlaceId);               
+               //console.log(originPlaceId + " -> " + destinationPlaceId);               
               }
             } else {
               window.alert('No results found');
@@ -252,7 +240,7 @@
 
   // ======================================================================
       function setupPlaceChangedListener(autocomplete, mode) {
-        // 範圍限界
+        // area limit
         autocomplete.bindTo('bounds', map);
         placeListener = autocomplete.addListener('place_changed', function() {
           
@@ -273,8 +261,7 @@
                 originPlaceId = place.place_id;
               } else {
                 destinationPlaceId = place.place_id;
-              }
-              route();            
+              }           
             });        
       };
 
@@ -282,9 +269,9 @@
         google.maps.event.removeListener(placeListener);
       }
 
-      //AutocompleteDirectionsHandler.prototype.route =
       function route() {
-        console.log(originPlaceId + " -> " + destinationPlaceId); 
+        marker.setMap(null);
+        //console.log(originPlaceId + " -> " + destinationPlaceId); 
         if (!originPlaceId || !destinationPlaceId) {
           return;
         }
