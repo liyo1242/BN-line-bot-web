@@ -168,7 +168,7 @@
             if(marker!=null)
               marker.setMap(null);
 
-            map.setZoom(17);            
+            map.setZoom(15);            
             map.setCenter(pos);
             callBear();
           }, function() {
