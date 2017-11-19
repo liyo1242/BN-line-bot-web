@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title>Places Searchbox</title>
+
+  <link rel="stylesheet" href="styles/reset.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body,
+    button,
+    input {
+      font-family: Microsoft JhengHei;
+      font-size: 14px;
+      color: black;
+      font-weight: bolder;
+    }
+
+    * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    #map {
+      z-index: 0;
+      height: 100vh;
+      width: 100%;
+    }
+
+    .content {
+      z-index: 99;
+      width: 100%;
+      margin-left: auto;
+      margin-right: inherit;
+      height: auto;
+      position: absolute;
+    }
+
+    .top {
+      margin-top: 20px;
+    }
+
+    .table {
+      width: 90%;
+      height: 100px;
+      margin: auto;
+      overflow: hidden;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .tr {
+      padding: 5px;
+      background: white;
+      font-size: 0px;
+    }
+
+    .td {
+      height: 40px;
+      display: inline-block;
+      vertical-align: top;
+      line-height: 40px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .title {
+      width: 70px;
+    }
+
+    .data {
+      width: calc(100% - 35px);
+    }
+
+    .icon {
+      width: 35px;
+      font-size: 20px;
+    }
+
+    input {
+      border: 0;
+      padding: 0;
+      width: 90%;
+    }
+
+    input:focus {
+      outline: none;
+    }
+
+    input[type="datetime-local"] {
+      background-color: white;
+    }
+    
+    input[type="text"] {
+      text-overflow: clip;
+    }
+
+    .clear {
+      margin-left: 5px;
+      opacity: 0;
+    }
+
+    input:valid + .clear {
+      opacity: 1;
+    }
+
+    .bottom {
+      position: fixed;
+      bottom: 0;
+      height: 100px;
+      width: 100%;
+    }
+
+    .none {
+      display: none;
+    }
+
+    .gps {
+      position: absolute;
+      bottom: 100px;
+      right: 5%;
+      position: absolute;
+      color: red;
+      background-color: white;
+      border: 0px solid black;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .btn {
+      height: 60px;
+      width: 60px;
+      font-size: 10px;
+      background-color: white;
+      border: 0px solid black;
+      border-radius: 40px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    button>span>i.fa {
+      margin-bottom: 3px;
+      font-size: 28px;
+    }
+
+    .lower-right-corner {
+      position: absolute;
+      bottom: 20px;
+      right: 5%;
+    }
+
+    .lower-left-corner {
+      position: absolute;
+      bottom: 20px;
+      left: 5%;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="content">
+      <div class="top">
+        <div class="table">
+          <div class="tr" id="getOn">
+            <div class="td icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+            <div class="td data"><input type="text" id="getOnPlace" value="" required placeholder="上車地點"><i class="fa fa-times clear" aria-hidden="true"></i></div>
+          </div>
+
+          <div class="tr" id="getOff">
+            <div class="td icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+            <div class="td data"><input type="text" id="getOffPlace" value="" required placeholder="下車地點"><i class="fa fa-times clear" aria-hidden="true"></i></div> 
+          </div>
+
+          <div class="tr" id="date">
+            <div class="td title">日期時間</div>
+            <div class="td line"></div>
+            <div class="td data"><input type="datetime-local" id="dateTime"></div>
+            <div class="td line"></div>
+            <div class="td icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="bottom">
+        <button class="btn feature lower-right-corner" id="next_getOn"><span><i class="fa fa-arrow-right" aria-hidden="true"></i><br>確認位置</span></button>
+        <button class="btn feature lower-right-corner none" id="next_getOff"><span><i class="fa fa-arrow-right" aria-hidden="true"></i><br>確認位置</span></button>
+        <button class="btn feature lower-right-corner none" id="taxi"><span><i class="fa fa-taxi" aria-hidden="true"></i><br>開始叫車</span></button>
+        <button class="btn feature lower-left-corner none" id="back"><span><i class="fa fa-reply" aria-hidden="true"></i><br>上一步</span></button>
+        <button class="btn gps" onclick="GPS()">
+            <span><i class="fa fa-map-marker" aria-hidden="true"></i><br>GPS</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="map"></div>
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="scripts/main.js"></script>
+  <script src="scripts/test1.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJj2Wreyszitgd1b3Y09pK__W161VZaIc&libraries=places&callback=initMap"
+    async defer></script>
+
+</body>
+
+</html>
