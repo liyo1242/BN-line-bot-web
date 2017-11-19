@@ -18,13 +18,19 @@
       font-weight: bolder;
     }
 
+    * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
     #map {
       z-index: 0;
       height: 100vh;
       width: 100%;
     }
 
-    .content-inner {
+    .content {
       z-index: 99;
       width: 100%;
       margin-left: auto;
@@ -33,63 +39,31 @@
       position: absolute;
     }
 
-    .ui-content {
-      padding: 0px;
+    .top {
+      margin-top: 20px;
     }
 
-    .table-wrapper {
-      margin: 15px auto 0;
+    .table {
       width: 90%;
-    }
-
-    table {
-      height: 40px;
-      width: 90vw;
-      position: fixed;
+      height: 100px;
+      margin: auto;
       overflow: hidden;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      transition: height 1s ease-out;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     }
 
-    tbody {}
-
-    tr {}
-
-    #getOn {
-      position: static;
+    .tr {
+      padding: 5px;
+      background: white;
+      font-size: 0px;
     }
 
-    #getOn .icon {
-      color: orange;
-    }
-
-    #getOff {
-      position: absolute;
-      top: 40px;
-    }
-
-    #date {
-      position: absolute;
-      top: 80px;
-    }
-
-    td {
+    .td {
       height: 40px;
-      vertical-align: middle;
+      display: inline-block;
+      vertical-align: top;
+      line-height: 40px;
       text-align: center;
-      background-color: white;
-    }
-
-    .line {
-      padding: 0;
-      width: 0;
-    }
-
-    .lines {
-      height: 80%;
-      border-right: 2px solid black;
-      border-radius: 2px;
+      font-size: 14px;
     }
 
     .title {
@@ -97,13 +71,12 @@
     }
 
     .data {
-      width: calc(90vw - 70px - 35px - 4px);
-      padding: 0 5px;
+      width: calc(100% - 35px);
     }
 
     .icon {
       width: 35px;
-      font-size: 24px;
+      font-size: 20px;
     }
 
     input {
@@ -114,64 +87,6 @@
 
     input:focus {
       outline: none;
-    }
-
-    .gps {
-      position: absolute;
-      bottom: 100px;
-      right: 5%;
-      position: absolute;
-      color: red;
-      background-color: white;
-      border: 0px solid black;
-      border-radius: 20px;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
-    /*******************************************************/
-
-    .bottom {
-      position: fixed;
-      height: auto;
-      width: 100%;
-      bottom: 0;
-      z-index: 99;
-    }
-
-    .bottom-inner {}
-
-    button>span>i.fa {
-      margin-bottom: 3px;
-      font-size: 28px;
-    }
-
-    .btn {
-      height: 60px;
-      width: 60px;
-      font-size: 10px;
-      background-color: white;
-      border: 0px solid black;
-      border-radius: 40px;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
-
-    .lower-right-corner {
-      position: absolute;
-      bottom: 20px;
-      right: 5%;
-    }
-
-    .lower-left-corner {
-      position: absolute;
-      bottom: 20px;
-      left: 5%;
-    }
-
-    .fa-taxi {
-      color: orange;
-    }
-
-    .none {
-      display: none;
     }
 
     input[type="datetime-local"] {
@@ -191,50 +106,93 @@
       opacity: 1;
     }
 
+    .bottom {
+      position: fixed;
+      bottom: 0;
+      height: 100px;
+      width: 100%;
+    }
+
+    .none {
+      display: none;
+    }
+
+    .gps {
+      position: absolute;
+      bottom: 100px;
+      right: 5%;
+      position: absolute;
+      color: red;
+      background-color: white;
+      border: 0px solid black;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .btn {
+      height: 60px;
+      width: 60px;
+      font-size: 10px;
+      background-color: white;
+      border: 0px solid black;
+      border-radius: 40px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    button>span>i.fa {
+      margin-bottom: 3px;
+      font-size: 28px;
+    }
+
+    .lower-right-corner {
+      position: absolute;
+      bottom: 20px;
+      right: 5%;
+    }
+
+    .lower-left-corner {
+      position: absolute;
+      bottom: 20px;
+      left: 5%;
+    }
+
   </style>
 </head>
 
 <body>
   <div class="page">
     <div class="content">
-      <div class="content-inner">
-        <div class="table-wrapper">
-          <table>
-            <tbody>
-              <tr id="getOn">
-                <td class="title">上車地點</td>
-                <td class="line"><span class="lines"></span></td>
-                <td class="data"><input type="text" id="getOnPlace" value="" required placeholder="輸入位置"><i class="fa fa-times clear" aria-hidden="true"></i></td>
-                <td class="line"><span class="lines"></span></td>
-                <td class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></td>
-              </tr>
-              <tr id="getOff">
-                <td class="title">下車地點</td>
-                <td class="line"><span class="lines"></span></td>
-                <td class="data"><input type="text" id="getOffPlace" value="" required placeholder="輸入位置"><i class="fa fa-times clear" aria-hidden="true"></i></td>
-                <td class="line"><span class="lines"></span></td>
-                <td class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></td>
-              </tr>
-              <tr id="date">
-                <td class="title">日期時間</td>
-                <td class="line"><span class="lines"></span></td>
-                <td class="data"><input type="datetime-local" id="dateTime"></td>
-                <td class="line"><span class="lines"></span></td>
-                <td class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></td>
-              </tr>
-            </tbody>
-          </table>
+      <div class="top">
+        <div class="table">
+          <div class="tr" id="getOn">
+            <div class="td icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+            <div class="td data"><input type="text" id="getOnPlace" value="" required placeholder="上車地點"><i class="fa fa-times clear" aria-hidden="true"></i></div>
+          </div>
+
+          <div class="tr" id="getOff">
+            <div class="td icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+            <div class="td data"><input type="text" id="getOffPlace" value="" required placeholder="下車地點"><i class="fa fa-times clear" aria-hidden="true"></i></div> 
+          </div>
+
+          <div class="tr" id="date">
+            <div class="td title">日期時間</div>
+            <div class="td line"></div>
+            <div class="td data"><input type="datetime-local" id="dateTime"></div>
+            <div class="td line"></div>
+            <div class="td icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+          </div>
         </div>
+
       </div>
 
       <div class="bottom">
-        <button class="btn feature lower-right-corner" id="next_getOn"><span><i class="fa fa-arrow-right" aria-hidden="true"></i><br>下一步</span></button>
-        <button class="btn feature lower-right-corner none" id="next_getOff"><span><i class="fa fa-arrow-right" aria-hidden="true"></i><br>下一步</span></button>
+        <button class="btn feature lower-right-corner" id="next_getOn"><span><i class="fa fa-arrow-right" aria-hidden="true"></i><br>確認位置</span></button>
+        <button class="btn feature lower-right-corner none" id="next_getOff"><span><i class="fa fa-arrow-right" aria-hidden="true"></i><br>確認位置</span></button>
         <button class="btn feature lower-right-corner none" id="taxi"><span><i class="fa fa-taxi" aria-hidden="true"></i><br>開始叫車</span></button>
         <button class="btn feature lower-left-corner none" id="back"><span><i class="fa fa-reply" aria-hidden="true"></i><br>上一步</span></button>
         <button class="btn gps" onclick="GPS()">
-              <span><i class="fa fa-map-marker" aria-hidden="true"></i><br>GPS</span>
-          </button>
+            <span><i class="fa fa-map-marker" aria-hidden="true"></i><br>GPS</span>
+        </button>
       </div>
     </div>
 
@@ -244,7 +202,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="scripts/main.js"></script>
-  <script src="scripts/test.js"></script>
+  <script src="scripts/test1.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJj2Wreyszitgd1b3Y09pK__W161VZaIc&libraries=places&callback=initMap"
     async defer></script>
 
