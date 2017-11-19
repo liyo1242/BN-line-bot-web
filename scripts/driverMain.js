@@ -1,18 +1,15 @@
 
   var marker;
   var map;
-  var infowindow;
-  var Startmar;
-  var Endmar;
-  // Autocomplete sevice var==================
+  // sevice var==================
   var directionsService; 
   var directionsDisplay;
-  var originAutocomplete;
-  var destinationAutocomplete ;
-  var placeListener;
+  var travelMode = 'DRIVING';
+  var originPlaceId = null;
+  var destinationPlaceId = null;
   //==========================================
       function initMap() {        
-          map = new google.maps.Map(document.getElementById('map'), {
+          map = new google.maps.Map(document.getElementById('Dmap'), {
           disableDefaultUI : true,
           center: {lat: 25.0339640, lng: 121.5644720},
           zoom: 17, // Vision size
@@ -97,51 +94,22 @@
         });
 
         var geocoder = new google.maps.Geocoder;
-        var originInput = document.getElementById('getOnPlace');
-        var destinationInput = document.getElementById('getOffPlace');
 
-        GPS();       
+        // GPS();       
         // map listener -> when the center change && the map stop sliding
         map.addListener("idle", function(){ 
           if(marker!=null)
             marker.setMap(null);
 
-          var center = map.getCenter();  // 經緯度===
-          if(decideStep != 2){
-              callBear()
-            }               
+          var center = map.getCenter();  // 經緯度===                         
           geocodeLatLng(geocoder, map,center);
 
         });        
 
         directionsService = new google.maps.DirectionsService;
-        directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
+        directionsDisplay = new google.maps.DirectionsRenderer;
         directionsDisplay.setMap(map);
 
-        originInput.addEventListener("click", function(){
-            if(decideStep == 0){ // 沒有雞沒有鴨
-              originPlaceId = null ;
-              destinationPlaceId = null ;
-              originAutocomplete = new google.maps.places.Autocomplete(originInput);                        
-              setupPlaceChangedListener(originAutocomplete, 'ORIG');//add getOnPlace Lis
-            }else if(decideStep == 1){// 輸入完上車 未輸入下車
-              removeAutocompleteListener(originAutocomplete);//rm getOnPlace Lis
-              destinationPlaceId = null ;
-            }
-        });
-
-        destinationInput.addEventListener("click", function(){
-            if(decideStep == 0){ // 沒有雞沒有鴨
-              originPlaceId = null ;
-              destinationPlaceId = null ;               
-            }else if(decideStep == 1){// 輸入完上車 未輸入下車
-              destinationPlaceId = null ;              
-              destinationAutocomplete=new google.maps.places.Autocomplete(destinationInput);
-              setupPlaceChangedListener(destinationAutocomplete, 'DEST');//add getOffPlace Lis
-            }else if (decideStep == 2){// 輸入完上車 輸入完下車
-              removeAutocompleteListener(destinationAutocomplete);//rm getOffPlace Lis          
-            }
-        });
       }
 
       function lockMap(){
@@ -158,6 +126,42 @@
           icon: 'hellocubee-small.png',
           position: {lat: map.getCenter().lat(), lng: map.getCenter().lng()}
         });            
+      }
+
+      function lnglatToid(jd,lat,lng){              
+        var latlng = {lat: lat, lng: lng};      
+
+        geocoder.geocode({'location': latlng}, function(results, status) {
+          if (status === 'OK') {
+            if (results[0]) {
+              if(jd === 'BEAR')
+                originPlaceId = results[0].place_id
+              else if (jd === 'CAR')                                          
+                destinationPlaceId = results[0].place_id
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
+      }
+
+      function placeIcon(jd,latp,lngp){
+        var iconjd ;
+
+        if(jd === 'BEAR')
+          iconjd = 'hellocubee-small.png';
+        else if (jd === 'CAR')
+          iconjd = 'car.png';
+
+        lnglatToid(jd,latp,lngp);
+
+        marker = new google.maps.Marker({
+          map: map,
+          icon: iconjd,
+          position: {lat: latp, lng: lngp}
+        });
       }
 
       function GPS(){
@@ -183,22 +187,6 @@
         }
       }
 
-      function placeIcon(jd,position){
-        var iconjd ;
-
-        if(jd === 'BEAR')
-          iconjd = 'hellocubee-small.png';
-        else if (jd === 'CAR')
-          iconjd = 'car.png';
-
-        var markerI = new google.maps.Marker({
-          map: map,
-          icon: iconjd,
-          position: position
-        });
-        return markerI;
-      }
-
       //Animation================================================ 動畫目前沒用
       function toggleBounce() {
         if (marker.getAnimation() !== null) {
@@ -213,26 +201,13 @@
         var input = center;      
         var latlng = {lat: center.lat(), lng: center.lng()};
 
-        var text;
-
-        if (decideStep == 0){
-           text = document.getElementById("getOnPlace");
-        } else if (decideStep == 1){
-           text = document.getElementById("getOffPlace");
-        }
+        var text;        
 
         geocoder.geocode({'location': latlng}, function(results, status) {
           if (status === 'OK') {
             if (results[0]) {
-                //window.alert(results[0].formatted_address);  // 這是地址==================
-               if(decideStep==0){
-               text.value = results[0].formatted_address;
-               originPlaceId = results[0].place_id;
-              }else if (decideStep == 1){
-               text.value = results[0].formatted_address;
-               destinationPlaceId = results[0].place_id;
-               //console.log(originPlaceId + " -> " + destinationPlaceId);               
-              }
+                //window.alert(results[0].formatted_address);  // 這是地址==================                              
+              
             } else {
               window.alert('No results found');
             }
@@ -249,43 +224,11 @@
                               '目前的瀏覽器可能不支援喔');
       }
 
-  // 路線規劃==============================================================
+  // 路線規劃=============================================================   
+
+
   // ======================================================================
       
-      var travelMode = 'DRIVING';
-      var originPlaceId = null;
-      var destinationPlaceId = null;
-
-  // ======================================================================
-      function setupPlaceChangedListener(autocomplete, mode) {
-        // area limit
-        autocomplete.bindTo('bounds', map);
-        placeListener = autocomplete.addListener('place_changed', function() {
-          
-              var place = autocomplete.getPlace();
-              if (!place.place_id) {
-                window.alert("Please select an option from the dropdown list.");
-                return;
-              }
-
-              if (place.geometry.viewport) {
-              map.fitBounds(place.geometry.viewport);
-              } else {
-              map.setCenter(place.geometry.location);
-              map.setZoom(17); 
-              }
-
-              if (mode === 'ORIG') {
-                originPlaceId = place.place_id;
-              } else {
-                destinationPlaceId = place.place_id;
-              }           
-            });        
-      };
-
-      function removeAutocompleteListener(autocomplete){
-        google.maps.event.removeListener(placeListener);
-      }
 
       function route() {
         marker.setMap(null);
@@ -300,30 +243,6 @@
         }, function(response, status) {
           if (status === 'OK') {
             directionsDisplay.setDirections(response);
-            Startmar = placeIcon('BEAR',response.routes[0].legs[0].start_location);
-            Endmar = placeIcon('CAR',response.routes[0].legs[0].end_location);
-
-            var infoString = 
-            '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">貼心提醒</h1>'+
-            '<div id="bodyContent">'+
-            '<p>您的路程長 : <b> '+ response.routes[0].legs[0].distance.text + '</b> 大概需要 <b> ' + response.routes[0].legs[0].duration.text + '</b> 到目的地喔~ </p>'+            
-            '</div>'+
-            '</div>';
-
-            infowindow = new google.maps.InfoWindow({
-              content: infoString
-            });
-
-            infowindow.open(map, Startmar);
-
-            Startmar.addListener('click', function() {
-              infowindow.open(map, Startmar);
-            });
-
-            console.log(response);
           } else {
             window.alert('Directions request failed due to ' + status);
           }
@@ -332,9 +251,4 @@
 
       function removeRoute(){
         directionsDisplay.setDirections({routes: []});
-        infowindow.close();
-        Startmar.setMap(null);
-        Endmar.setMap(null);
       }
-
-

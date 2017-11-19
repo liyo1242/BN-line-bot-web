@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title>Places Searchbox</title>
+
+  <link rel="stylesheet" href="styles/reset.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body,
+    button,
+    input {
+      font-family: Microsoft JhengHei;
+      font-size: 14px;
+      color: black;
+      font-weight: bolder;
+    }
+
+    #Dmap {
+      z-index: 0;
+      height: 100vh;
+      width: 100%;
+    }
+
+    .content-inner {
+      z-index: 99;
+      width: 100%;
+      margin-left: auto;
+      margin-right: inherit;
+      height: auto;
+      position: absolute;
+    }
+
+    .ui-content {
+      padding: 0px;
+    }
+
+    .table-wrapper {
+      margin: 15px auto 0;
+      width: 90%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">   
+
+    <div id="Dmap"></div>
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="scripts/driverMain.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJj2Wreyszitgd1b3Y09pK__W161VZaIc&libraries=places&callback=initMap"
+    async defer></script>
+
+</body>
+
+</html>
