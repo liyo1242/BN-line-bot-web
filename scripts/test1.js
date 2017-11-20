@@ -23,11 +23,7 @@ $(document).ready(function () {
     })
     $("#book").click(function(){
         $("input#dateTime").trigger('click');
-        return false;
      });
-     $("input#dateTime").click(function(){
-         console.log('tt');
-     })
 });
 
 function getOn_active(){
