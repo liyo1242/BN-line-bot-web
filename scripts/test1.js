@@ -21,10 +21,13 @@ $(document).ready(function () {
     $('#getOff').click(function(){
         getOff_active();
     })
-    $('#book').click(function(event){
-        event.preventDefault();
-        $('#dateTime').click();
-    })
+    $("#book").click(function(){
+        $("input#dateTime").trigger('click');
+        return false;
+     });
+     $("input#dateTime").click(function(){
+         console.log('tt');
+     })
 });
 
 function getOn_active(){
