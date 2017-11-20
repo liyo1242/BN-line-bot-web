@@ -93,7 +93,7 @@
     input[type="datetime-local"] {
       background-color: white;
     }
-    
+
     input[type="text"] {
       text-overflow: clip;
     }
@@ -103,7 +103,7 @@
       opacity: 0;
     }
 
-    input:valid + .clear {
+    input:valid+.clear {
       opacity: 1;
     }
 
@@ -158,18 +158,19 @@
       width: 100%;
       overflow: hidden;
       background: rgba(255, 255, 255, 1);
-      transition: height 1s; 
+      transition: height 1s;
     }
 
     .info-content {
       padding: 10px;
       height: inherit;
     }
-    
-    .info-content>span{
+
+    .info-content>span {
       display: block;
       height: 20px;
     }
+
     #back {
       font-size: 20px;
     }
@@ -194,6 +195,7 @@
       border: 0px solid black;
       border-radius: 50px;
     }
+
     .right {
       float: right;
     }
@@ -212,18 +214,9 @@
 
           <div class="tr" id="getOff">
             <div class="td icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
-            <div class="td data"><input type="text" id="getOffPlace" value="" required placeholder="下車地點"><i class="fa fa-times clear" aria-hidden="true"></i></div> 
-          </div>
-
-          <div class="tr" id="date">
-            <div class="td title">日期時間</div>
-            <div class="td line"></div>
-            <div class="td data"><input type="datetime-local" id="dateTime"></div>
-            <div class="td line"></div>
-            <div class="td icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+            <div class="td data"><input type="text" id="getOffPlace" value="" required placeholder="下車地點"><i class="fa fa-times clear" aria-hidden="true"></i></div>
           </div>
         </div>
-
       </div>
 
       <div class="bottom">
@@ -233,16 +226,17 @@
             <span><i class="fa fa-map-marker" aria-hidden="true"></i><br>GPS</span>
         </button>
       </div>
-      
+
       <div class="info-wrapper">
         <div class="info-content">
           <span><i class="fa fa-arrow-left" aria-hidden="true" id="back"></i></span>
           <div class="info"></div>
           <div class="method">
-              <button class="method-btn" id=""><span><i class="fa fa-taxi" aria-hidden="true"></i><br>立即叫車</span></button>
-              <button class="method-btn right" id=""><span><i class="fa fa-calendar-o" aria-hidden="true"></i><br>預約叫車</span></button>
+            <button class="method-btn" id=""><span><i class="fa fa-taxi" aria-hidden="true"></i><br>立即叫車</span></button>
+            <button class="method-btn right" id="book"><span><i class="fa fa-calendar-o" aria-hidden="true"></i><br>預約叫車</span></button>
+            <input type="datetime-local" class="none" id="dateTime">
           </div>
-        </div>    
+        </div>
       </div>
 
     </div>

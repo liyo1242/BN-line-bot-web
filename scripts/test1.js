@@ -21,6 +21,10 @@ $(document).ready(function () {
     $('#getOff').click(function(){
         getOff_active();
     })
+    $('#book').click(function(event){
+        event.preventDefault();
+        $('#dateTime').click();
+    })
 });
 
 function getOn_active(){
