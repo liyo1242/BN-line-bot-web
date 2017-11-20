@@ -1,6 +1,21 @@
 $(document).ready(function () {
-    $('#next').click(function(){
-        $('.info').css('height','300px');
+    $('#next-geton').click(function(){
+        $(this).hide();
+        $('#next-getoff').show();
+        $('.table').css('height','100px');
+    })
+    $('#next-getoff').click(function(){
+        $('.info-wrapper').css('height','300px');
         $('.table').css('height','0px').css('width','0px');
+    })
+    $('#back').click(function(){
+        $('.info-wrapper').css('height','0px');
+        $('.table').css('height','100px').css('width','90%');
+    })
+    $('input').focus(function(){
+        $(this).parent().prev().css('color','orange');
+    })
+    $('input').focusout(function(){
+        $(this).parent().prev().css('color','black');
     })
 });

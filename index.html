@@ -45,11 +45,11 @@
 
     .table {
       width: 90%;
-      height: 100px;
+      height: 50px;
       margin-left: 5%;
       overflow: hidden;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      transition: height 1s 0.5s, width 2s;
+      transition: height 0.75s 0.25s, width 1s;
     }
 
     .tr {
@@ -151,15 +151,52 @@
       right: 5%;
     }
 
-    .info {
+    .info-wrapper {
       position: fixed;
       bottom: 0;
       height: 0px;
       width: 100%;
+      overflow: hidden;
       background: rgba(255, 255, 255, 1);
       transition: height 1s; 
     }
 
+    .info-content {
+      padding: 10px;
+      height: inherit;
+    }
+    
+    .info-content>span{
+      display: block;
+      height: 20px;
+    }
+    #back {
+      font-size: 20px;
+    }
+
+    .info {
+      height: 160px;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .method {
+      height: 100px;
+      width: 250px;
+      margin: auto;
+      background-color: rgba(255, 0, 0, 0.3);
+    }
+
+    .method-btn {
+      height: 100px;
+      width: 100px;
+      font-size: 10px;
+      background-color: white;
+      border: 0px solid black;
+      border-radius: 50px;
+    }
+    .right {
+      float: right;
+    }
   </style>
 </head>
 
@@ -190,14 +227,22 @@
       </div>
 
       <div class="bottom">
-        <button class="btn feature lower-right-corner" id="next"><span><i class="fa fa-arrow-right" aria-hidden="true"></i><br>確認位置</span></button>
+        <button class="btn lower-right-corner" id="next-geton"><span><i class="fa fa-arrow-right" aria-hidden="true"></i><br>確認位置</span></button>
+        <button class="btn lower-right-corner none" id="next-getoff"><span><i class="fa fa-arrow-right" aria-hidden="true"></i><br>確認位置</span></button>
         <button class="btn gps" onclick="GPS()">
             <span><i class="fa fa-map-marker" aria-hidden="true"></i><br>GPS</span>
         </button>
       </div>
       
-      <div class="info">
-
+      <div class="info-wrapper">
+        <div class="info-content">
+          <span><i class="fa fa-arrow-left" aria-hidden="true" id="back"></i></span>
+          <div class="info"></div>
+          <div class="method">
+              <button class="method-btn" id=""><span><i class="fa fa-taxi" aria-hidden="true"></i><br>立即叫車</span></button>
+              <button class="method-btn right" id=""><span><i class="fa fa-calendar-o" aria-hidden="true"></i><br>預約叫車</span></button>
+          </div>
+        </div>    
       </div>
 
     </div>
