@@ -1,8 +1,10 @@
 $(document).ready(function () {
+    getOn_active();
     $('#next-geton').click(function(){
         $(this).hide();
         $('#next-getoff').show();
         $('.table').css('height','100px');
+        getOff_active();
     })
     $('#next-getoff').click(function(){
         $('.info-wrapper').css('height','300px');
@@ -11,11 +13,24 @@ $(document).ready(function () {
     $('#back').click(function(){
         $('.info-wrapper').css('height','0px');
         $('.table').css('height','100px').css('width','90%');
+        getOff_active();
     })
-    $('input').focus(function(){
-        $(this).parent().prev().css('color','orange');
+    $('#getOn').click(function(){
+        getOn_active();
     })
-    $('input').focusout(function(){
-        $(this).parent().prev().css('color','black');
+    $('#getOff').click(function(){
+        getOff_active();
     })
 });
+
+function getOn_active(){
+    remove_active();
+    $('#getOn>div.icon').css('color','orange');
+}
+function getOff_active(){
+    remove_active();
+    $('#getOff>div.icon').css('color','orange');
+}
+function remove_active(){
+    $('div.icon').css('color','black');
+}
