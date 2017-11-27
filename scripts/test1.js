@@ -25,7 +25,7 @@ $(document).ready(function () {
         $("input#dateTime").trigger('click');
     });
     $('.datetime-content .back').click(function(){
-        $('input#dateTime').val("");
+        $('input#dateTime').val('');
     })
 });
 
