@@ -10,7 +10,7 @@ $(document).ready(function () {
         $('.info-wrapper').css('height','300px');
         $('.table').css('height','0px').css('width','0px');
     })
-    $('#back').click(function(){
+    $('.info-content .back').click(function(){
         $('.info-wrapper').css('height','0px');
         $('.table').css('height','100px').css('width','90%');
         getOff_active();
@@ -23,7 +23,11 @@ $(document).ready(function () {
     })
     $("#book").click(function(){
         $("input#dateTime").trigger('click');
-     });
+    });
+    $('.datetime-content .back').click(function(){
+        $('.datetime-wrapper').css('height','0px');
+        $('input#dateTime').val('');
+    })
 });
 
 function getOn_active(){

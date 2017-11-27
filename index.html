@@ -173,7 +173,7 @@
       height: 20px;
     }
 
-    #back {
+    .back {
       font-size: 20px;
     }
 
@@ -220,6 +220,11 @@
       background-color: white;
       transition: height 1s;
     }
+
+    .datetime-content {
+      padding: 10px;
+      height: inherit;
+    }
   </style>
 </head>
 
@@ -250,7 +255,7 @@
 
       <div class="info-wrapper">
         <div class="info-content">
-          <span><i class="fa fa-arrow-left" aria-hidden="true" id="back"></i></span>
+          <span><i class="fa fa-arrow-left back" aria-hidden="true"></i></span>
           <div class="info"></div>
           <div class="method">
             <button class="method-btn" id=""><span><i class="fa fa-taxi" aria-hidden="true"></i><br>立即叫車</span></button>
@@ -262,7 +267,13 @@
 
       <input type="datetime-local" id="dateTime" required>
       <div class="datetime-wrapper">
-        
+        <div class="datetime-content">
+          <span><i class="fa fa-arrow-left back" aria-hidden="true"></i></span>
+          <div class="info"></div>
+          <div class="method">
+            
+          </div>
+        </div>
       </div>
 
     </div>
