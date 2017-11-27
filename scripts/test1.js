@@ -26,7 +26,7 @@ $(document).ready(function () {
     });
     $('.datetime-content .back').click(function(){
         $('.datetime-wrapper').css('height','0px');
-        $('input#dateTime').val('');
+        $('input#dateTime').val("");
     })
 });
 
