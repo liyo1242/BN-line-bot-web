@@ -7,11 +7,11 @@ $(document).ready(function () {
         getOff_active();
     })
     $('#next-getoff').click(function(){
-        $('.info-wrapper').css('height','300px');
+        $('.carinfo-wrapper').css('height','300px');
         $('.table').css('height','0px').css('width','0px');
     })
-    $('.info-content .back').click(function(){
-        $('.info-wrapper').css('height','0px');
+    $('.carinfo-content .back').click(function(){
+        $('.carinfo-wrapper').css('height','0px');
         $('.table').css('height','100px').css('width','90%');
         getOff_active();
     })
@@ -22,10 +22,15 @@ $(document).ready(function () {
         getOff_active();
     })
     $("#book").click(function(){
-        $("input#dateTime").trigger('click');
+        $("input#datetime").trigger('click');
     });
     $('.datetime-content .back').click(function(){
-        $('input#dateTime').val('');
+        $('input#datetime').val('');
+    })
+    $('input#datetime').change(function(){
+        var datetime = $('input#datetime').val();
+        var html = `預約時間 : ` + datetime;
+        $('.datetime-data').html(html);
     })
 });
 

@@ -107,8 +107,6 @@
       opacity: 1;
     }
 
-    
-
     .bottom {
       position: fixed;
       bottom: 0;
@@ -153,7 +151,7 @@
       right: 5%;
     }
 
-    .info-wrapper {
+    .carinfo-wrapper {
       position: fixed;
       bottom: 0;
       height: 0px;
@@ -163,12 +161,12 @@
       transition: height 1s;
     }
 
-    .info-content {
+    .carinfo-content {
       padding: 10px;
       height: inherit;
     }
 
-    .info-content>span {
+    .carinfo-content>span {
       display: block;
       height: 20px;
     }
@@ -177,19 +175,19 @@
       font-size: 20px;
     }
 
-    .info {
+    .carinfo-data {
       height: 160px;
       background: rgba(0, 0, 0, 0.3);
     }
 
-    .method {
+    .carinfo-method {
       height: 100px;
       width: 250px;
       margin: auto;
       background-color: rgba(255, 0, 0, 0.3);
     }
 
-    .method-btn {
+    .car-btn {
       height: 100px;
       width: 100px;
       font-size: 10px;
@@ -202,19 +200,19 @@
       float: right;
     }
     
-    #dateTime {
+    #datetime {
       height: 0px;
       visibility: hidden;
     }
 
-    input#dateTime:valid+div.datetime-wrapper {
+    input#datetime:valid+div.datetime-wrapper {
       height: 300px;
     }
 
     .datetime-wrapper {
       position: fixed;
       bottom: 0;
-      height: 0px;
+      height: 300px;
       width: 100%;
       overflow: hidden;
       background-color: white;
@@ -225,6 +223,20 @@
       padding: 10px;
       height: inherit;
     }
+
+    .datetime-data {
+      height: 210px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 10px;
+    }
+
+    .datetime-method {
+      height: 50px;
+      width: 200px;
+      margin: auto;
+      background-color: rgba(255, 0, 0, 0.3);
+    }
+
   </style>
 </head>
 
@@ -253,24 +265,24 @@
         </button>
       </div>
 
-      <div class="info-wrapper">
-        <div class="info-content">
+      <div class="carinfo-wrapper">
+        <div class="carinfo-content">
           <span><i class="fa fa-arrow-left back" aria-hidden="true"></i></span>
-          <div class="info"></div>
-          <div class="method">
-            <button class="method-btn" id=""><span><i class="fa fa-taxi" aria-hidden="true"></i><br>立即叫車</span></button>
-            <button class="method-btn right" id="book"><span><i class="fa fa-calendar-o" aria-hidden="true"></i><br>預約叫車</span></button>
-            
+          <div class="carinfo-data"></div>
+          <div class="carinfo-method">
+            <button class="car-btn" id=""><span><i class="fa fa-taxi" aria-hidden="true"></i><br>立即叫車</span></button>
+            <button class="car-btn right" id="book"><span><i class="fa fa-calendar-o" aria-hidden="true"></i><br>預約叫車</span></button>        
           </div>
         </div>
       </div>
 
-      <input type="datetime-local" id="dateTime" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" required>
+      <input type="datetime-local" id="datetime" required>
       <div class="datetime-wrapper">
         <div class="datetime-content">
           <span><i class="fa fa-arrow-left back" aria-hidden="true"></i></span>
-          <div class="info"></div>
-          <div class="method">
+          <div class="datetime-data">
+          </div>
+          <div class="datetime-method">
             
           </div>
         </div>
