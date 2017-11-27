@@ -107,6 +107,8 @@
       opacity: 1;
     }
 
+    
+
     .bottom {
       position: fixed;
       bottom: 0;
@@ -157,7 +159,7 @@
       height: 0px;
       width: 100%;
       overflow: hidden;
-      background: rgba(255, 255, 255, 1);
+      background-color: white;
       transition: height 1s;
     }
 
@@ -204,6 +206,20 @@
       height: 0px;
       visibility: hidden;
     }
+
+    input#dateTime:valid+div.datetime-wrapper {
+      height: 300px;
+    }
+
+    .datetime-wrapper {
+      position: fixed;
+      bottom: 0;
+      height: 0px;
+      width: 100%;
+      overflow: hidden;
+      background-color: white;
+      transition: height 1s;
+    }
   </style>
 </head>
 
@@ -239,9 +255,14 @@
           <div class="method">
             <button class="method-btn" id=""><span><i class="fa fa-taxi" aria-hidden="true"></i><br>立即叫車</span></button>
             <button class="method-btn right" id="book"><span><i class="fa fa-calendar-o" aria-hidden="true"></i><br>預約叫車</span></button>
-            <input type="datetime-local" id="dateTime">
+            
           </div>
         </div>
+      </div>
+
+      <input type="datetime-local" id="dateTime" required>
+      <div class="datetime-wrapper">
+        
       </div>
 
     </div>
