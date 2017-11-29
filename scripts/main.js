@@ -304,7 +304,7 @@
             //map.setCenter(response.routes[0].bounds.getCenter());
 
             var lineSymbol = {
-              path: 'M 0,-1 0,3',
+              path: 'M 0,-1 0,1',
               scale: 6,
               strokeColor: '#FFFFFF'
             };
@@ -319,7 +319,7 @@
                 icon: lineSymbol,
                 //offset: '100%'
                 offset: '0',
-                repeat: '60px'
+                repeat: '30px'
               }],
               map: map
             });
@@ -337,13 +337,14 @@
             '</div>'+
             '</div>';
 
+            $('.carinfo-data').html(infoString);
+
             //console.log(response);
 
             infowindow = new google.maps.InfoWindow({
               content: infoString
             });
 
-            infowindow.open(map, Startmar);
 
             Startmar.addListener('click', function() {
               infowindow.open(map, Startmar);
