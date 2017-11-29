@@ -1,87 +1,69 @@
 $(document).ready(function () {
-    $("#next_getOn").click(function () {
-        getOnPlace = $("#getOnPlace").val();
-        if (getOnPlace) {
-            $('#getOnPlace').attr('readonly', true);
-            $(".feature").hide();
-            $("#next_getOff,#back").show();
-            $("table").css("height","80px");
-            $(".icon").css("color", "black");
-            $("#getOff .icon").css("color", "orange");
-            decideStep = 1;
-            $('.pac-container').remove();
-        } else {
-            alert("請輸入上車位置");
-        }
-    });
-    $("#next_getOff").click(function () {
-        getOffPlace = $("#getOffPlace").val();
-        if (getOffPlace) {
-            $('#getOffPlace').attr('readonly', true);
-            $(".feature").hide();
-            $("#taxi,#back").show();
-            $("table").css("height","120px");
-            $(".icon").css("color", "black");
-            $("#date .icon").css("color", "orange");
-            decideStep = 2;
-            lockMap();
-            route();            
-            $('.pac-container').remove();
-        } else {
-            alert("請輸入下車位置");
-        }
-    });
-    $("#taxi").click(function () {
-        dateTime = $("#dateTime").val();
-        if (dateTime) {
-            alert(getOnPlace + "\n" + getOffPlace + "\n" + dateTime);
-        } else {
-            alert("請輸入日期時間");
-        }
-    });
-    $("#back").click(function () {
-        switch (decideStep) {
-            case 0:
-                alert("error");
-                break;
-            case 1:
-                $("#getOnPlace").attr("readOnly", false).val("");
-                $("#getOffPlace").val("");
-                $(".feature").hide();
-                $("#next_getOn").show();
-                $("table").css("height","40px");
-                $(".icon").css("color", "black");
-                $("#getOn .icon").css("color", "orange");
-                getOnPlace = "";
-                decideStep = 0;
-                break;
-            case 2:
-                $("#getOffPlace").attr("readOnly", false).val("");
-                $("#dateTime").val("");
-                $(".feature").hide();
-                $("#next_getOff,#back").show();
-                $("table").css("height","80px");
-                $(".icon").css("color", "black");
-                $("#getOff .icon").css("color", "orange");
-                getOffPlace = "";
-                decideStep = 1;
-                callBear();
-                unlockMap();
-                removeRoute();
-                break;
-            default:
-                alert("error");
-        }
+    icon_active('#getOn>.icon');
+
+    $('.clear').click(function(){
+        $(this).prev().val('');
     })
-    $("i.clear").click(function(){
-        var opacity = $(this).css("opacity");
-        if(opacity == 1){
-            $(this).prev().val("");
+
+    $('#next').click(function(){
+        on = $('#getOnPlace').val()
+        off = $('#getOffPlace').val()
+        if($('.table').css('height') == '50px' && on)
+        {
+            $('.table').css('height','100px');
+            icon_active('#getOff>.icon');
         }
+        if(on && off)
+        {
+            lockMap();            
+            $('#map').css('height', 'calc(100vh - 300px)');
+            route();
+            $('.carinfo-wrapper').css('height','300px');
+            $('.table').css('height','0px').css('width','0px');
+        }
+        else if(!on && !off) alert('請輸入上車位置及下車位置');
+        else if(!on) alert('請輸入上車位置');
+        else if(!off && $('.table').css('height') != '50px') alert('請輸入下車位置');
+    })
+
+    $('.carinfo-content .back').click(function(){
+        $('.carinfo-wrapper').css('height','0px');        
+        $('#map').css('height', '100vh'); 
+        $('.table').css('height','100px').css('width','90%');
+        icon_active('#getOff>.icon');
+        //callBear();
+        unlockMap();
+        removeRoute();
+    })
+
+    $('#getOn').click(function(){
+        icon_active('#getOn>.icon');
+    })
+
+    $('#getOff').click(function(){
+        icon_active('#getOff>.icon');
+    })
+
+    $("#book").click(function(){
+        $("input#datetime").trigger('click');
+    });
+    
+    $('.datetime-content .back').click(function(){
+        $('input#datetime').val('');
+    })
+
+    $('input#datetime').change(function(){
+        datetime = $('input#datetime').val();
+        var html = `預約時間 : ` + datetime;
+        $('.datetime-data').html(html);
     })
 });
 
-var decideStep = 0;
 var getOnPlace;
 var getOffPlace;
-var dateTime;
+var datetime;
+
+function icon_active(target){
+    $('div.icon').css('color','black');
+    $(target).css('color','orange');
+}
