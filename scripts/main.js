@@ -305,7 +305,7 @@
 
             var lineSymbol = {
               path: 'M 0,-1 0,1',
-              scale: 6,
+              scale: 4,
               strokeColor: '#FFFFFF'
             };
 
@@ -313,13 +313,13 @@
               path: google.maps.geometry.encoding.decodePath(response.routes[0].overview_polyline),
               //path: [{lat: 25.0339640, lng: 121.5644720}, {lat: 25.0439640, lng: 121.5744720}],
               strokeColor : '#000000',
-              scale: 6,
+              scale: 4,
               strokeOpacity : 1 ,
               icons: [{
                 icon: lineSymbol,
                 //offset: '100%'
                 offset: '0',
-                repeat: '30px'
+                repeat: '20px'
               }],
               map: map
             });
