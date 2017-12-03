@@ -289,6 +289,7 @@
         google.maps.event.trigger(map, 'resize'); // 超重要之RESIZE大法
         //marker.setMap(null);
         //console.log(originPlaceId + " -> " + destinationPlaceId); 
+        $('#arrow').attr('class','hide');
         if (!originPlaceId || !destinationPlaceId) {
           return;
         }
@@ -369,6 +370,7 @@
       }
 
       function removeRoute(){
+        $('#arrow').attr('class','arrow');
         directionsDisplay.setDirections({routes: []});
         infowindow.close();
         line.setMap(null);
