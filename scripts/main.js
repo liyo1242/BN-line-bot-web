@@ -329,7 +329,7 @@
 
 
             var infoString = 
-            '<div id="content">'+
+            '<div id="content" style="padding: 15%">'+
             '<div id="siteNotice">'+
             '</div>'+
             '<h1 id="firstHeading" class="firstHeading">貼心提醒</h1>'+
@@ -343,9 +343,9 @@
             //console.log(response);
 
             infowindow = new google.maps.InfoWindow({
-              content: infoString
+              content: response.routes[0].legs[0].duration.text
             });
-
+            infowindow.open(map, Startmar);
 
             Startmar.addListener('click', function() {
               infowindow.open(map, Startmar);
